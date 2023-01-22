@@ -29,7 +29,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta property="og:title" content="404: Page not found">
+<meta property="og:title" content="[GithubPages] 03.하루만에 깃허브 블로그 만들기">
 <meta property="og:type" content="article">
 
 
@@ -44,13 +44,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>404: Page not found &middot; 라곰(Lagom)</title>
+  <title>[GithubPages] 03.하루만에 깃허브 블로그 만들기 &middot; 라곰(Lagom)</title>
 
 
 
-<meta name="description" content="백수개발자의 지식 저장소.
+<meta name="description" content="커스텀하기
+
 ">
-<meta property="og:description" content="백수개발자의 지식 저장소.
+<meta property="og:description" content="커스텀하기
+
 ">
 
 
@@ -65,13 +67,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/404.html">
-<meta property="og:url" content="http://localhost:4000/404.html">
+<link rel="canonical" href="http://localhost:4000/study/2020/12/26/making-blog03.html">
+<meta property="og:url" content="http://localhost:4000/study/2020/12/26/making-blog03.html">
 
 <link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
 
 
+  <link rel="prev" href="http://localhost:4000/study/2020/12/26/making-blog02.html">
 
+
+
+  <link rel="next" href="http://localhost:4000/study/2020/12/26/making-blog01.html">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -156,11 +162,460 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <div id="_yPushState">
   <div class="fade-in">
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/sidebar-bg.jpeg">
-      <div class="page">
-  <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="/">Head back home</a> to try finding it again.</p>
+      
+
+<article id="post-study/2020/12/26/making-blog03" class="post" role="article">
+  <header>
+
+    <h1 class="post-title">
+      
+        [GithubPages] 03.하루만에 깃허브 블로그 만들기
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2020-12-26T00:00:00+09:00">26 Dec 2020</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/study/" data-flip="title">Study</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <span>Githubpage</span>
+
+    </p>ß
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+
+
+<style>
+.googleads { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .googleads { display: none; } }
+</style>
+<!--구글 에드센스
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-1200017190012992"
+></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+-->
+      <!--게시물 내용-->
+      <h1 id="커스텀하기">커스텀하기</h1>
+
+<ul>
+  <li>목차
+    <ul>
+      <li><a href="#1._data">1._data</a></li>
+      <li><a href="#2._featured_tags">2._featured_tags</a></li>
+      <li><a href="#3._includes">3._includes</a></li>
+      <li><a href="#4._posts">4._posts</a></li>
+      <li><a href="#5.assets">5.assets</a></li>
+      <li><a href="#6._config.yml">6._config.yml</a></li>
+      <li><a href="#7.about.md">7.about.md</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>이제 자신의 블로그로 만들기위해서 커스텀을 해보자.</p>
+
+<p>대부분 지킬 깃허브 블로그가 비슷한 구조로 되어있기때문에 다른 테마에도 적용할수 있을것이다.</p>
+
+<p>물론 완전 똑같지는 않을수 있으니 그 테마를 잘 분석하고 그 테마에 맞게 커스텀하면 되겠다.</p>
+
+<p>하루만에 깃허브 블로그 만들기 시리즈는 하루만에 빨리 자신의 블로그를 만드는것이기 때문에 원리 같은것은 설명하지 않으며 커스텀 순서도 그냥 가장 위에있는 폴더와 파일 순으로 하겠다.</p>
+
+<h2 id="1-_data">1. _data</h2>
+
+<p>위에서 부터 하나하나 바꿔보자</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-1.jpeg" alt="그림1" /></p>
+
+<p>_data 폴더에서는 authors.yml만 바꾸면 된다. 블로그의 주인, 저자를 정하는 과정이다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-2.jpeg" alt="그림2" /></p>
+
+<p>author1 –&gt; 자기 영어 닉네임, 깃헙 아이디</p>
+
+<p>name : 자기 이름</p>
+
+<p>email : 자기 이메일</p>
+
+<p>about : About 보여줄 자기 또는 블로그 설명 글</p>
+
+<p>​</p>
+
+<p>picture:</p>
+
+<p>picture은 About에 보일 자기 얼굴이다.</p>
+
+<p>1x는 웹에서 보일사진</p>
+
+<p>2x는 모바일용이다.</p>
+
+<p>이때 picture의 path의 위치를 /assets/img/me.jpg로 바꿔준다.
+마찬가지로 1x와 2x도 바꿔주자. me2.jpg로 다른 사진을 이용해도 된다.</p>
+
+<p>이후 assets/img폴더에 me.jpg 사진을 넣는다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-3.jpeg" alt="그림3" /></p>
+
+<p>assets/img에 자신을 대표할 사진을 me.jpg로 저장한다.</p>
+
+<p>path: assets/img/me.jpg로 바꾼다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-4.jpeg" alt="그림4" /></p>
+
+<p>social 에서는 사이드바 아래쪽에 자신에게 컨텍할수 있는 메일, 깃헙, 페이스북, 트위터등이있다.</p>
+
+<p>필자는 깃헙, 메일, 인스타그램만 열어놓았다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-5.jpeg" alt="그림5" /></p>
+
+<p>다음으로 두번째 저자이다. 회사, 동아리가 공동 관리하는 블로그라면 위 양식을 계속해서 추가하면 된다.</p>
+
+<p>필자는 개인 블로그이므로 그냥 그대로 두었다.</p>
+
+<h2 id="2-_featured_tags">2. _featured_tags</h2>
+
+<p>사이드바 카테고리이다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-6.jpeg" alt="그림6" /></p>
+
+<p>필자는 카테고리 가장 위에 About 다음으로 Portfolio, Project, Class, Review, Daily, Travel, Etc 로 구성하고 싶다.</p>
+
+<p>hyde.md 파일을 Portfolio.md로 이름을 바꾼다.</p>
+
+<p>title을 Portfolio</p>
+
+<p>slug는 portfolio</p>
+
+<p>order는 순서로 2로 바꾼다.</p>
+
+<p>description은 이 카테고리의 설명글을 넣는다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-7.jpeg" alt="그림7" /></p>
+
+<p>같은 양식으로 7개를 만들었다.</p>
+
+<h2 id="3-_includes">3. _includes</h2>
+
+<p>templates폴더에 footer.html에서 Powered by를 찾는다. Hydejack을 자신의 블로그 주소와 자기 이름으로 바꿔준다.</p>
+
+<p><strong>about.html</strong></p>
+
+<p><strong>author.html</strong></p>
+
+<p><strong>footer.html</strong> : 웹페이지 하단에 Powered by 000의 이름과 링크를 바꿔줄수 있다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-8.JPG" alt="그림8" /></p>
+
+<p><strong>sidebar.html</strong> : <strong>중요</strong> 사이드바를 커스텀할때 여기를 건든다.</p>
+
+<p>먼저 사이드바에 자신의 사진을 넣어보자</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-22.JPG" alt="그림22" /></p>
+
+<p>를 원하는 위치에 넣어준다. 사이드바 가장위에도 넣을수 있고 가장 아래도 넣을 수 있다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-9.jpeg" alt="그림9" width="200" /></p>
+
+<p>빠르게 만들어보기 위해 나머지는 건들지 않고 바로 _posts로 넘어간다.</p>
+
+<h2 id="4-_posts">4. _posts</h2>
+
+<p><img src="../../../../assets/img/study/githubpages/3-10.jpeg" alt="그림10" /></p>
+
+<p>이미 글이 있다.</p>
+
+<p>위와 같은 양식으로 게시물을 올릴때 연-월-일-카테고리이름-내용제목.md로 하자</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-11.JPG" alt="그림11" /></p>
+
+<p>일단 대충 이름과 양식만 맞추고 내용은 나중에 고쳐보자.</p>
+
+<h2 id="5-assets">5. assets</h2>
+
+<p>블로그 스타일설정과
+포스팅할 이미지등이 여기에 보관한다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-12.jpeg" alt="그림12" /></p>
+
+<p>먼저 icons에 favicon.ico가 있다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-13.jpeg" alt="그림13" /></p>
+
+<p>위 그림과 같이 웹 아이콘이 favicon인데 이 아이콘을 정할수 있다.</p>
+
+<p>아이콘으로 만들 이미지를 준비한다.</p>
+
+<p><a href="https://www.favicon-generator.org/">https://www.favicon-generator.org/</a></p>
+
+<p>위 사이트에 접속한다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-14.jpeg" alt="그림14" /></p>
+
+<p>파일을 선택하고 create Favicon 버튼을 클릭한다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-15.jpeg" alt="그림15" /></p>
+
+<p>Download the generated favicon을 클릭하면 zip파일이 다운받아진다.</p>
+
+<p>zip파일을 풀면 favicon.ico파일을 복사하여 기존에 assets/icons/favicon.ico를 지우고 새 favicon.ico를 넣는다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-16.jpeg" alt="그림16" /></p>
+
+<p>위 사진처럼 변환된 favicon.ico를 폴더에 넣어준다.</p>
+
+<p>나머지 변환된 png들도 이름을 맞춰주어 바꿔준다.</p>
+
+<p>assets/img에 sidebar-bg.jpg를 자신의 이미지로 바꿔준다.</p>
+
+<p>괜찮은 무료 이미지를 찾는다면 아래 링크에서 검색하면 좋다.</p>
+
+<p><a href="https://unsplash.com/">https://unsplash.com/</a></p>
+
+<h2 id="6-_configyml">6. _config.yml</h2>
+
+<p>페이지 구성정보이자 가장 중요한 환경변수 설정 파일이다.</p>
+
+<p>가장 먼저 보이는 url:은</p>
+
+<p>url: https://<username>.github.io 를 하준다.</username></p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-17.jpeg" alt="그림17" /></p>
+
+<p>​title : 은 내 블로그 이름을 적어주고</p>
+
+<p>description은 블로그에 대한 간단한 소개글</p>
+
+<p>tageline도 블로그에 대한 간단한 소개글이다.</p>
+
+<p>사이드바에 보인다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-18.JPG" alt="그림18" /></p>
+
+<p>logo는 그대로 두면 되겠다.</p>
+
+<p>다음 author을 _data의 authors.yml에서 바꾸어주었던 닉네임으로 바꿔준다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-19.jpeg" alt="그림19" /></p>
+
+<p>paginate는 보여줄수 있는 게시물 개수이다. 기본값이 5로 5개씩 보여준다.</p>
+
+<p>그대로 둔다.</p>
+
+<p>​</p>
+
+<p>accent_image는 사이드바의 이미지이다.</p>
+
+<p>assets/img/에 sidebar-bg.jpg의 이름으로 이미지를 바꿔준다.</p>
+
+<p>​</p>
+
+<p>google_fonts:</p>
+
+<p>​</p>
+
+<p>font:</p>
+
+<p>​</p>
+
+<p>font_heading:</p>
+
+<p>​</p>
+
+<p>google_analytics:</p>
+
+<h2 id="7-aboutmd">7. about.md</h2>
+<p>내 about으로 나를 설명하는 부분이다.</p>
+
+<p>간단하게 나를 표현하자.</p>
+
+<p>순서는 가장 먼저로 한다.</p>
+
+<p>​</p>
+
+<p>나머지 파일들도 대충 눌러보면서 확인해보면서 눈으로 익혀본다.</p>
+
+<ul>
+  <li>+about.md와 같이 _posts폴더안이 아니라 밖에 만들수도 있다.
+필자는 Portfolio 카테고리를 하나 만들었다.</li>
+</ul>
+
+<p><img src="../../../../assets/img/study/githubpages/3-20.JPG" alt="그림20" /></p>
+
+<p>일단 컴파일을 해서 확인을 해보자.</p>
+
+<p>bundle exec jekyll serve</p>
+
+<p>명령어를 터미널에서 하고 로컬주소로 접속을 한다.</p>
+
+<p><img src="../../../../assets/img/study/githubpages/3-21.jpeg" alt="그림21" /></p>
+
+      <br/>
+      <!-- 블로그-하단-반응형 
+      <br/>
+      
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-1200017190012992"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      
+    </div>
+    
+    <script>
+
+    </script>
+    -->
+  
+
+</article>
+
+  <hr class="dingbat" />
+<!--공유, 트위터, 페이스북-->
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=[GithubPages] 03.하루만에 깃허브 블로그 만들기&amp;url=http://localhost:4000/study/2020/12/26/making-blog03.html"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2020/12/26/making-blog03.html"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author1" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="JeongYong Cho"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>PS(problem solver) 개발자 조정용입니다.</p>
+
+  </div>
+</div>
 </div>
 
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/study/2020/12/26/making-blog01.html" data-flip="title">
+    <span>[GithubPages] 01.하루만에 깃허브 블로그 만들기</span>
+  </a>
+  <small><time datetime="2020-12-26T11:45:51+09:00">
+    26 Dec 2020
+  </time></small>
+</li>
+
+        
+      
+        
+          
+          
+        
+        
+          
+
+
+<li class="h4">
+  <a href="/study/2020/12/26/making-blog02.html" data-flip="title">
+    <span>[GithubPages] 02.하루만에 깃허브 블로그 만들기</span>
+  </a>
+  <small><time datetime="2020-12-26T00:00:00+09:00">
+    26 Dec 2020
+  </time></small>
+</li>
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+</aside>
 
       
 
