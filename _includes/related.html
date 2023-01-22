@@ -2,7 +2,7 @@
 
 <aside class="related" role="complementary">
   <h2 class="hr">Related Posts</h2>
-
+  {% include page-button.html %}
   <ul class="related-posts">
     {% if site.use_lsi %}
       {% for post in site.related_posts limit:3 %}
