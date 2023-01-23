@@ -97,6 +97,9 @@
   max-width: 100%;
   box-sizing: content-box;
   background-color: #fff;
+  min-width: 25px;
+  min-height: 25px;
+  margin-top: -0.2rem;
 }
 
 .markdown-body code {
@@ -296,4 +299,29 @@ input[type="checkbox"]:checked ~ ul{
 .button:active {
   position:relative;
 	top:1px;
+  }
+
+  .tipue_search_wrapper{
+    text-align: center;
+    min-width: 45%;
+    max-width: 45%;
+    margin-left: 380px
+  }
+  
+  @media (max-width: 1000px) {
+    .tipue_search_wrapper{
+      text-align: center !important;
+      min-width: 30% !important;
+      max-width: 60% !important;
+      margin-left: 320px !important;
+    }
+  } 
+
+  @media (max-width: 850px) {
+    .tipue_search_wrapper{
+      text-align: center !important;
+      min-width: 50% !important;
+      max-width: 85% !important;
+      margin-left: 50px !important;
+    }
   }
