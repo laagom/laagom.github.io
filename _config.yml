@@ -141,3 +141,9 @@ tipue_search:
          files: [search.html, index.html, tags.html]
          categories: []
          tags: []
+
+comments:
+  provider               : "utterances"
+  utterances:
+    theme                : "github-light"
+    issue_term           : "pathname" 
