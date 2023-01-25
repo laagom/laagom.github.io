@@ -6,9 +6,101 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Jan 2023 16:06:24 +0900</pubDate>
-    <lastBuildDate>Wed, 25 Jan 2023 16:06:24 +0900</lastBuildDate>
+    <pubDate>Wed, 25 Jan 2023 22:15:04 +0900</pubDate>
+    <lastBuildDate>Wed, 25 Jan 2023 22:15:04 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Computer Science] 컴퓨터란?</title>
+        <description>&lt;h1 id=&quot;컴퓨터란&quot;&gt;컴퓨터란?&lt;/h1&gt;
+&lt;p&gt;compute라는 어원을 가지며, &lt;code class=&quot;highlighter-rouge&quot;&gt;계산&lt;/code&gt;하는 기계라는 의미를 가지고 있다. 여기서 &lt;code class=&quot;highlighter-rouge&quot;&gt;계산&lt;/code&gt;이라는 것은 우리가 생각하는 산수가 아닌 좀더 포괄적인 개념이다. 그렇다면 계산하는 기계인 컴퓨터가 가지는 구성에 대해 알아보자. 컴퓨터 시스템은 크게 &lt;code class=&quot;highlighter-rouge&quot;&gt;하드웨어&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;소프트웨어&lt;/code&gt;로 나누어진다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;하드웨어: 컴퓨터를 구성하는 기계적 장치&lt;/li&gt;
+  &lt;li&gt;소프트웨어: 하드웨어의 동작을 지시하고 제어하는 명령어 집합&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;하드웨어&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;하드웨어&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;하드웨어는 마우스, 키보드 등 실제로 존재하는 컴퓨터를 구성하는 장치를 말한다.
+&lt;img src=&quot;/assets/resources/hardware-architecture-001.jpeg&quot; alt=&quot;Alt text&quot; /&gt;
+창고: &lt;a href=&quot;http://jangun.com/study/ComputerScienceIntroduction.html&quot;&gt;http://jangun.com/study/ComputerScienceIntroduction.html&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;중앙처리장치(CPU)&lt;/li&gt;
+  &lt;li&gt;기억장치: RAM, HDD&lt;/li&gt;
+  &lt;li&gt;입출력장치: 마우스, 프린터, 모니터 등&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;실재하는 컴퓨터는 하드웨어는 &lt;code class=&quot;highlighter-rouge&quot;&gt;중앙처리장치(CPU)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;기억장치&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;입출력장치&lt;/code&gt; 로 구성되어 있다. 이들은 시스템 버스로 연결이 되어 있으며, 시스템 버스는 데이터와 명령 제어 신호를 각 장치로 실어나르는 역할을 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-cpu이란&quot;&gt;🔖 CPU이란?&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;컴퓨터에서 `계산`을 담당하는 두뇌라고 생각하면 된다.  주기억장치에서 프로그램 명령어와 데이터를 읽어와 처리하고 명령어의 수행 순서를 제어한다. 중앙처리장치(CPU)는 비교와 연산을 담당하는 `산술논리연산장치(ALU)`와 명령어의 해석과 실행을 담당하는 `제어장치`, 속도가 빠른 데이터 기억장소인 `레지스터`로 구성되어 있다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;계산&lt;/code&gt;을 담당하는 만큼 &lt;code class=&quot;highlighter-rouge&quot;&gt;처리속도가 그만큼 빠르다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-ram이란&quot;&gt;🔖 RAM이란?&lt;/h3&gt;
+&lt;p&gt;우리가 수학문제를&lt;code class=&quot;highlighter-rouge&quot;&gt;노트&lt;/code&gt;하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;연필&lt;/code&gt;을 이용하여 풀듯, CPU가 하는 계산을 &lt;code class=&quot;highlighter-rouge&quot;&gt;노트&lt;/code&gt;와&lt;code class=&quot;highlighter-rouge&quot;&gt;연필&lt;/code&gt;을 이용하여 도와주는 역할을 &lt;code class=&quot;highlighter-rouge&quot;&gt;RAM&lt;/code&gt;이라고 생각하면 된다. 내 두뇌만을 이용해서 문제를 풀 수 있지만 노트와 연필을 이용한 보조장치를 이용하면 더 손쉬운 문제풀이가 가능하기 때문에 RAM이라는 하드웨어가 존재하는 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;-보조장치란&quot;&gt;🔖 보조장치란?&lt;/h3&gt;
+&lt;p&gt;좁은 의미의 컴퓨터는 &lt;code class=&quot;highlighter-rouge&quot;&gt;CPU&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;RMA&lt;/code&gt;을 합친거라고 생각하면 나머지는 보조장치라고 할 수 있다.(입출력장치, 보조 기억장치)&lt;/p&gt;
+
+&lt;h3 id=&quot;-보조-기억-장치hdd-sdd란&quot;&gt;🔖 보조 기억 장치(HDD, SDD)란?&lt;/h3&gt;
+&lt;p&gt;RAM도 사실상 용량이 그렇게 크지 않기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;보조 기억 장치&lt;/code&gt;를 이용한다. 우리가 자주 접하는 컴퓨터 용량이나 외장 하드, SSD가 이에 포함된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-시스템-버스&quot;&gt;🔖 시스템 버스&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;하드웨어 구성 요소를 물리적으로 연결하는 선을 의미 각 구성요소가 다른 구성요소로 데이터를 보낼 수 있도록 통로가 되어준다. 용도에 따라 `데이터 버스`, `주소 버스`, `제어 버스`로 나누어 진다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;데이터 버스 : 중앙처리장치와 기타 장치 사이에서 데이터를 전달하는 통로&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;기억장치와 입출력장치의 명령어와 데이터를 중앙처리장치로 보내거나 중앙처리장치의 연산 결과를 기억장치와 입출력장치로 보내는 &lt;code class=&quot;highlighter-rouge&quot;&gt;양방향&lt;/code&gt;버스&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;주소 버스 : 데이터를 정확히 실어나르기 위해서는 기억 장치 &lt;code class=&quot;highlighter-rouge&quot;&gt;주소&lt;/code&gt;를 정해주어야 함.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;주소 버스는 중앙처리장치가 주기억 장치나 입출력장치로 기억장치 주소를 전달하는 통로이기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;단방향&lt;/code&gt;버스임&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;제어 버스 : 주소 버스와 데이터 버스는 모든 장치에 공유되기 때문에 이를 제어할 수단이 필요&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;제어 버스는 중앙처리 장치가 기억장치나 입출력장치에 제어 신호를 전달하는 통로임&lt;/li&gt;
+    &lt;li&gt;제어 신호 종류 : 기억장치 읽기 및 쓰기, 버스 요청 및 승인, 인터럽트 요청 및 승인, 클락, 리셋 등&lt;/li&gt;
+    &lt;li&gt;제어 버스는 읽기 동작과 쓰기 동작을 모두 수행하기 때문에 &lt;code class=&quot;highlighter-rouge&quot;&gt;양방향&lt;/code&gt;버스임&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;소프트웨어&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;소프트웨어&lt;/span&gt;&lt;/h2&gt;
+&lt;p&gt;소프트웨어는 눈으로는 볼 수 있지만 손으로는 만질 수 없는 것들을 의민한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템 소프트웨어: 운영체제, 컴파일러&lt;/li&gt;
+  &lt;li&gt;응용 소프트웨어: 워드프로세서, 스프레드시트&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 25 Jan 2023 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html</link>
+        <guid isPermaLink="true">http://localhost:4000/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html</guid>
+        
+        <category>computer_science</category>
+        
+        
+        <category>study</category>
+        
+      </item>
     
       <item>
         <title>[Algorithm] 거품 정렬 (Bubble Sort)</title>
