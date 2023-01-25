@@ -154,6 +154,7 @@ a.sidebar-nav-item {
   line-height: 1.75;
   padding: .25rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
 }
 
 a.sidebar-nav-subitem {
@@ -162,6 +163,9 @@ a.sidebar-nav-subitem {
   line-height: 1.75;
   padding: .25rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  margin-left: 45px;
+  color:#939393;
 }
 
 // @media print {
