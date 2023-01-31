@@ -6,9 +6,197 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Jan 2023 22:15:04 +0900</pubDate>
-    <lastBuildDate>Wed, 25 Jan 2023 22:15:04 +0900</lastBuildDate>
+    <pubDate>Tue, 31 Jan 2023 22:12:23 +0900</pubDate>
+    <lastBuildDate>Tue, 31 Jan 2023 22:12:23 +0900</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
+    
+      <item>
+        <title>[Computer Science] 중앙처리장치(CPU) 작동 원리?</title>
+        <description>&lt;h1 id=&quot;중앙처리장치cpu란&quot;&gt;중앙처리장치(CPU)란?&lt;/h1&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;중앙처리장치(CPU)&lt;/code&gt;는 명령어의 &lt;code class=&quot;highlighter-rouge&quot;&gt;해석&lt;/code&gt;과 자료의 &lt;code class=&quot;highlighter-rouge&quot;&gt;연산&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;비교&lt;/code&gt;등의 처리를 제어하는 컴퓨터 시스템의 핵심장치이다. 다양한 입력 장치로부터 정보를 입력받아 처리한 후, 그 결과를 출력장치로 보내는 일련의 과정을 &lt;code class=&quot;highlighter-rouge&quot;&gt;제어&lt;/code&gt;하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;조정&lt;/code&gt;하는 일을 수행한다. CUP는 사람의 두뇌와 같이 컴퓨터의 모든 시스템을 제어, 처리하는 가장 핵심적인 장치라고 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cpu-구성요소&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;CPU 구성요소&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;span&gt; &lt;img src=&quot;/assets/resources/cpu-architecture-001.png&quot; alt=&quot;Alt text&quot; /&gt; &lt;/span&gt;
+출처: &lt;a href=&quot;https://mk28.tistory.com/15&quot;&gt;https://mk28.tistory.com/15&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;CPU는 크게 &lt;code class=&quot;highlighter-rouge&quot;&gt;제어장치&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;연산장치(ALU)&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;레지스터&lt;/code&gt;와 각 구성 요소를 연결하는 &lt;code class=&quot;highlighter-rouge&quot;&gt;내부 버스&lt;/code&gt;로 구성되어 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-연산-장치&quot;&gt;🔖 연산 장치&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;명령어를 실행하기 위한 마이크로연산(산술연산과 논리연산)을 수행&lt;/li&gt;
+  &lt;li&gt;연산에 필요한 데이터를 레지스터에서 가져오고 산술, 논리, 관계, 이동 등 다양한 연산을 수행&lt;/li&gt;
+  &lt;li&gt;연산 결과를 다시 레지스터로 보냄&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-제어-장치&quot;&gt;🔖 제어 장치&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;명령어를 순서대로 실행할 수 있도록 제어하는 장치&lt;/li&gt;
+  &lt;li&gt;주기억장치에서 프로그램 명령어를 꺼내 &lt;code class=&quot;highlighter-rouge&quot;&gt;해독&lt;/code&gt;하고, 그 결과에 따라 명령어 실행에 필요한 &lt;code class=&quot;highlighter-rouge&quot;&gt;제어 신호&lt;/code&gt;를 기억장치, 연산장치, 입출력장치로 보냄&lt;/li&gt;
+  &lt;li&gt;또한 이들 장치가 보낸 신호를 받아 다음에 수행할 동작을 결정&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-레지스터&quot;&gt;🔖 레지스터&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;CPU(중앙 처리 장치)내에 있는 소규모의 고속 기억장치&lt;/li&gt;
+  &lt;li&gt;명령어 주소, 코드, 연산에 필요한 데이터 련산 결과 등을 임시로 저장&lt;/li&gt;
+  &lt;li&gt;용도에 따라 범용 레지스터와 특수 목적 레지스터로 구분&lt;/li&gt;
+  &lt;li&gt;레지스터는 메모리 계층의 &lt;code class=&quot;highlighter-rouge&quot;&gt;최상위&lt;/code&gt;에 위치하며 &lt;code class=&quot;highlighter-rouge&quot;&gt;가장 빠른 속도&lt;/code&gt;로 접근 가능한 메모리이다.&lt;/li&gt;
+  &lt;li&gt;중앙처리장치 종류에 따라 사용할 수 있는 레지스터 개수와 크기가 다름
+    &lt;ul&gt;
+      &lt;li&gt;범용 레지스터 : 연산에 필요한 데이터나 연산 결과를 임시로 저장&lt;/li&gt;
+      &lt;li&gt;특수목적 레지스터 : 특별한 용도로 사용하는 레지스터&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-특수-목적-레지스터의-종류&quot;&gt;🔖 특수 목적 레지스터의 종류&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;MAR (메모리 주소 레지스터) : &lt;code class=&quot;highlighter-rouge&quot;&gt;읽기&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;쓰기&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;연산&lt;/code&gt;을 수행할 주기억장치 주소를 저장&lt;/li&gt;
+  &lt;li&gt;PC (프로그램 카운터) : 다음에 실행될 &lt;code class=&quot;highlighter-rouge&quot;&gt;명령어의 주소&lt;/code&gt;를 저장&lt;/li&gt;
+  &lt;li&gt;SP (스택 포인터) : &lt;code class=&quot;highlighter-rouge&quot;&gt;스택&lt;/code&gt;의 최상위 주소를 저장&lt;/li&gt;
+  &lt;li&gt;IX (인덱스 레지스터) : 인덱스 주소 지정 방식에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;인덱스&lt;/code&gt;를 저장&lt;/li&gt;
+  &lt;li&gt;IR (명령어 레지스터) : 명령어를 호출해서 해독하기 위해 &lt;code class=&quot;highlighter-rouge&quot;&gt;현재 명령어&lt;/code&gt;를 임시로 저장&lt;/li&gt;
+  &lt;li&gt;MBR (메모리 버퍼 레지스터) : &lt;code class=&quot;highlighter-rouge&quot;&gt;주기억장치의 내용&lt;/code&gt;을 임시로 저장하는 역할&lt;/li&gt;
+  &lt;li&gt;AC (누산기) : 산술 논리 장치의 &lt;code class=&quot;highlighter-rouge&quot;&gt;연산 결과&lt;/code&gt;를 임시로 저장&lt;/li&gt;
+  &lt;li&gt;PSR (프로그램 상태 레지스터) : &lt;code class=&quot;highlighter-rouge&quot;&gt;CPU의 현재 상태 정보&lt;/code&gt;를 저장&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cpu-연산동작-과정&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;CPU 연산&amp;amp;동작 과정&lt;/span&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;-연산&quot;&gt;🔖 연산&lt;/h3&gt;
+
+&lt;p&gt;CPU의 연산 순서는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Fetch&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Decode&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Execute&lt;/code&gt;-&amp;gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Writeback&lt;/code&gt;으로 이루어지며 각 과정의 설명은 다음과 같다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fetch(&lt;code class=&quot;highlighter-rouge&quot;&gt;인출&lt;/code&gt;): 메모리상의 프로그램 카운터(PC)가 가리키는 명령어를 CPU가 가르키는 명령어를 CPU로 인출하여 적재&lt;/li&gt;
+  &lt;li&gt;Decode(&lt;code class=&quot;highlighter-rouge&quot;&gt;해석&lt;/code&gt;): 명령어의 해석. 이 단계에서 명령어의 종류와 타겟 등을 판단한다.&lt;/li&gt;
+  &lt;li&gt;Execute(&lt;code class=&quot;highlighter-rouge&quot;&gt;실행&lt;/code&gt;): 해석된 명령어에 따라 데이터에 대한 연산을 수행한다.&lt;/li&gt;
+  &lt;li&gt;Writeback(&lt;code class=&quot;highlighter-rouge&quot;&gt;쓰기&lt;/code&gt;): 명령어대로 처리 완료된 데이터를 메모리에 기록한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-동작-과정&quot;&gt;🔖 동작 과정&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/resources/cpu-process-001.png&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(1) 보조기억장치에서 저장된 프로그램을 읽거나, 입력장치에서 입력받은 데이터를 주기억장치에서 읽는다.&lt;br /&gt;
+(2) 주기억장치에서 읽어온 데이터를 중앙처리장치(CPU)가 읽고 처리한 후 다시 주기억장치로 보낸 후 저장한다.&lt;br /&gt;
+(3) 주기억장치는 연산된 데이터를 출력장치에 보내거나 보조기억장치에 저장한다.&lt;br /&gt;
+(4) 제어장치는 (1)-(3)과정에서 명령어가 순서대로 잘 실행되도록 제어하는 역할을 수행.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;cpu의-명령어&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;CPU의 명령어&lt;/span&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;-명령어-세트&quot;&gt;🔖 명령어 세트&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;명령어 세트는 CPU가 실행할 명령어의 집합이다.&lt;/li&gt;
+  &lt;li&gt;명령어 세트는 실행할 연산을 나타내는 &lt;code class=&quot;highlighter-rouge&quot;&gt;연산 코드(Operation Code)&lt;/code&gt;와 연산에 필요한 데이터나 데이터의 저장 위치를 나타내는 &lt;code class=&quot;highlighter-rouge&quot;&gt;피연산자(Operand)&lt;/code&gt;로 구성된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-연산-코드-operation-code&quot;&gt;🔖 연산 코드 (Operation Code)&lt;/h3&gt;
+
+&lt;p&gt;연산 코드는 실행하는 연산의 종류에 따라 다음과 같이 네 가지 기능으로 나뉜다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;연산 기능 : 사칙연산, 이동(shift), 보수 등의 산술연산과 논리곱, 논리합, 부정 등의 논리연산을 수행한다.&lt;/li&gt;
+  &lt;li&gt;제어 기능 : 조건 분기와 무조건 분기 등을 사용하여 명령어의 실행 순서를 제어한다.&lt;/li&gt;
+  &lt;li&gt;데이터 전달 기능 : 레지스터와 레지스터 사이, 레지스터와 주기억장치 사이에서 데이터를 전달한다.&lt;/li&gt;
+  &lt;li&gt;입출력 기능 : 프로그램과 데이터를 주기억장치에 전달하고, 연산 결과는 출력장치에 전달한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-피연산자-operand&quot;&gt;🔖 피연산자 (Operand)&lt;/h3&gt;
+
+&lt;p&gt;피연산자에는 주소, 숫자/문자, 논리 데이터 등을 저장할 수 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주소 : 기억장치 혹은 레지스터의 주소가 저장된다.&lt;/li&gt;
+  &lt;li&gt;숫자/문자 : 숫자는 정수, 고정 소수점 수, 부동 소수점 수 및 각각의 코드로 저장되고 문자는 아스키코드로 저장된다.&lt;/li&gt;
+  &lt;li&gt;논리 데이터 : 참 또는 거짓을 표현할 때 사용하며 비트나 플래그로 저장된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;명령어-사이클&quot;&gt;&lt;span style=&quot;color:hsl(350, 100%, 66%);&quot;&gt;명령어 사이클&lt;/span&gt;&lt;/h2&gt;
+
+&lt;p&gt;CPU에서는 프로그램을 실행하기 위해 주기억장치에서 명령어를 순차적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;인출&lt;/code&gt;하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;해독&lt;/code&gt;하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;실행&lt;/code&gt;하는 과정을 반복하는데, CPU가 &lt;code class=&quot;highlighter-rouge&quot;&gt;주기억장치에서 한 번에 하나의 명령어를 인출하여 실행하는데 필요한 일련의 활동&lt;/code&gt;을 &lt;code class=&quot;highlighter-rouge&quot;&gt;명령어 사이클 (Instruction Cycle)&lt;/code&gt;이라고 한다.&lt;/p&gt;
+
+&lt;p&gt;명령어 사이클은 &lt;code class=&quot;highlighter-rouge&quot;&gt;인출&lt;/code&gt; 사이클, &lt;code class=&quot;highlighter-rouge&quot;&gt;실행&lt;/code&gt; 사이클, &lt;code class=&quot;highlighter-rouge&quot;&gt;간접&lt;/code&gt; 사이클, &lt;code class=&quot;highlighter-rouge&quot;&gt;인터럽트&lt;/code&gt; 사이클로 세분화 시킬 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;인출 사이클과 실행 사이클은 항상 수행&lt;/code&gt;되지만 / &lt;code class=&quot;highlighter-rouge&quot;&gt;간접 사이클과 인터럽트 사이클은 주소 지정방식이 필요할 때나 인터럽트 요구가 있을 때만&lt;/code&gt; 수행된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-인출사이클과-특수-목적-레지스터의-동작-과정&quot;&gt;🔖 인출사이클과 특수 목적 레지스터의 동작 과정&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/resources/sycle-process-001.jpeg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로그램 카운터(PC)에 저장된 주소를 메모리 주소 레지스터(MAR)로 전달 한다.&lt;/li&gt;
+  &lt;li&gt;메모리 주소 레지스터(MAR)에 저장된 내용을 토대로 주기억장치의 해당 주소에서 명령어를 인출한다.&lt;/li&gt;
+  &lt;li&gt;인출한 명령어를 메모리 버퍼 레지스터(MBR)에 저장한다.&lt;/li&gt;
+  &lt;li&gt;다음 명령어를 인출하기 위해 프로그램 카운터 (PC)의 값을 증가 시킨다.&lt;/li&gt;
+  &lt;li&gt;메모리 버퍼 레지스터(MBR)에 저장된 내용을 명령어 레지스터(IR)에 전달한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위 과정을 다음과 같이 표현하기도 한다.&lt;/p&gt;
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;T0 : MAR &amp;lt;- PC
+T1 : MBR &amp;lt;- M[MAR], PC &amp;lt;- PC + 1
+T2 : IR &amp;lt;- MBR
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;-실행-사이클과-특수-목적-레지스터의-동작-과정&quot;&gt;🔖 실행 사이클과 특수 목적 레지스터의 동작 과정&lt;/h3&gt;
+
+&lt;p&gt;다음은 인출 사이클로부터 명령어를 인출한 이후 명령어를 실행하는 과정인 실행 사이클의 과정이다.
+그 중에서도 더하기(ADD) 연산으로 과정을 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/resources/access-process-001.jpeg&quot; alt=&quot;Alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;명령어 레지스터(IR)의 내용을 메모리 주소 레지스터(MAR)로 전달한다.&lt;/li&gt;
+  &lt;li&gt;메모리에 저장된 데이터 값을 메모리 버퍼 레지스터(MBR)에 저장한다.&lt;/li&gt;
+  &lt;li&gt;누산기(AC)에 저장된 값에 ADD연산을 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;실행 사이클도 인출 사이클과 마찬가지로 다음과 같이 표현 할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ADD addr 명령어 연산
+
+T0 : MAR &amp;lt;- IR(Addr)
+T1 : MBR &amp;lt;- M[MAR]
+T2 : AC &amp;lt;- AC + MBR
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실행-사이클에서는-프로그램-카운터를-증가시키지-않는-이유&quot;&gt;실행 사이클에서는 프로그램 카운터를 증가시키지 않는 이유&lt;br /&gt;&lt;/h3&gt;
+&lt;p&gt;인출 사이클과 다르게 실행 사이클에서는 프로그램 카운터(PC)를 증가시키지 않는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;이미 인출이 진행 되고 명령어 실행만 하면 되는 상황&lt;/code&gt;이기 때문에 프로그램 카운터를 증가시킬 필요가 없다.
+즉, 이미 인출이 되어 명령어 레지스터(IR)에 메모리 버퍼 레지스터(MBR)의 값이 저장된 상태라는 의미이다.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 31 Jan 2023 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html</link>
+        <guid isPermaLink="true">http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html</guid>
+        
+        <category>computer_science</category>
+        
+        
+        <category>study</category>
+        
+      </item>
     
       <item>
         <title>[Computer Science] 컴퓨터란?</title>
