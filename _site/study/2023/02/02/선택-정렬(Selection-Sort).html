@@ -29,7 +29,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta property="og:title" content="[Computer Science] 중앙처리장치(CPU) 작동 원리?">
+<meta property="og:title" content="[Algorithm] 선택 정렬 (Selection Sort)">
 <meta property="og:type" content="article">
 
 
@@ -44,16 +44,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[Computer Science] 중앙처리장치(CPU) 작동 원리? &middot; 라곰(Lagom)</title>
+  <title>[Algorithm] 선택 정렬 (Selection Sort) &middot; 라곰(Lagom)</title>
 
 
 
-<meta name="description" content="중앙처리장치(CPU)란?
-중앙처리장치(CPU)는 명령어의 해석과 자료의 연산, 비교등의 처리를 제어하는 컴퓨터 시스템의 핵심장치이다. 다양한 입력 장치로부터 정보를 입력받아 처리한 후, 그 결과를 출력장치로 보내는 일련의 과정을 제어하고 조정하는 일을 수행한다. CUP는 사람의 두뇌와 같이 컴퓨터의 모든 시스템을 제어, 처리하는 가장 핵심적인 장치라고 할 수 있다.
+<meta name="description" content="선택 정렬 (Selection Sort)
+정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.
 
 ">
-<meta property="og:description" content="중앙처리장치(CPU)란?
-중앙처리장치(CPU)는 명령어의 해석과 자료의 연산, 비교등의 처리를 제어하는 컴퓨터 시스템의 핵심장치이다. 다양한 입력 장치로부터 정보를 입력받아 처리한 후, 그 결과를 출력장치로 보내는 일련의 과정을 제어하고 조정하는 일을 수행한다. CUP는 사람의 두뇌와 같이 컴퓨터의 모든 시스템을 제어, 처리하는 가장 핵심적인 장치라고 할 수 있다.
+<meta property="og:description" content="선택 정렬 (Selection Sort)
+정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.
 
 ">
 
@@ -69,17 +69,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html">
-<meta property="og:url" content="http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html">
+<link rel="canonical" href="http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html">
+<meta property="og:url" content="http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html">
 
 <link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html">
+  <link rel="prev" href="http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html">
 
 
-
-  <link rel="next" href="http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -175,17 +173,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/lagom.png">
       
 
-<article id="post-study/2023/01/31/중앙처리장치(CPU) 작동 원리" class="post" role="article">
+<article id="post-study/2023/02/02/선택 정렬(Selection Sort)" class="post" role="article">
   <header>
 
     <h1 class="post-title">
       
-        [Computer Science] 중앙처리장치(CPU) 작동 원리?
+        [Algorithm] 선택 정렬 (Selection Sort)
       
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2023-01-31T00:00:00+09:00">31 Jan 2023</time>
+      <time datetime="2023-02-02T00:00:00+09:00">02 Feb 2023</time>
       
 
 
@@ -208,7 +206,7 @@ in <a href="/category/study/" data-flip="title">Study</a>
 
 
 
-on <a href="/tag/study-computer-science/" data-flip="title">Computer Science</a>
+on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
 
     </p>ß
 
@@ -224,10 +222,10 @@ on <a href="/tag/study-computer-science/" data-flip="title">Computer Science</a>
     <div class="markdown-body">
 
       <div style="text-align:right; text-align: center">
-        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html"
+        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html"
           target="_blank">
           <img
-          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
         </a>
       </div>
 
@@ -247,180 +245,125 @@ on <a href="/tag/study-computer-science/" data-flip="title">Computer Science</a>
 <br/>
 -->
       <!--게시물 내용-->
-      <h1 id="중앙처리장치cpu란">중앙처리장치(CPU)란?</h1>
-<p><code class="highlighter-rouge">중앙처리장치(CPU)</code>는 명령어의 <code class="highlighter-rouge">해석</code>과 자료의 <code class="highlighter-rouge">연산</code>, <code class="highlighter-rouge">비교</code>등의 처리를 제어하는 컴퓨터 시스템의 핵심장치이다. 다양한 입력 장치로부터 정보를 입력받아 처리한 후, 그 결과를 출력장치로 보내는 일련의 과정을 <code class="highlighter-rouge">제어</code>하고 <code class="highlighter-rouge">조정</code>하는 일을 수행한다. CUP는 사람의 두뇌와 같이 컴퓨터의 모든 시스템을 제어, 처리하는 가장 핵심적인 장치라고 할 수 있다.</p>
+      <h1 id="선택-정렬-selection-sort">선택 정렬 (Selection Sort)</h1>
+<p>정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.</p>
 
 <p><br /></p>
 
-<h2 id="cpu-구성요소"><span style="color:hsl(350, 100%, 66%);">CPU 구성요소</span></h2>
+<h2 id="개념"><span style="color:hsl(350, 100%, 66%);">개념</span></h2>
+<p>선택 정렬은 <a href="https://github.com/laagom/Tech-Knowledge/blob/main/Algorithm/%EA%B1%B0%ED%92%88%20%EC%A0%95%EB%A0%AC(Bubble%20Sort).md">거품 정렬</a>과 많이 유사하다. 해당 순서에 원소를 넣을 위치는 이미 정해져 있고, 어떤 원소를 넣을지 선택하는 알고리즘이다. <code class="highlighter-rouge">거품정렬</code>의 경우 앞에서 서로 인접한 두개의 요소를 비교하여 제일 큰 값부터 뒤로 보내는 알고리즘이었다면, <code class="highlighter-rouge">선택 정렬</code>은 앞에서 부터 제일 작은 값을 순차적으로 나열하는 방식의 알고리즘이다.</p>
 
-<p><span> <img src="/assets/resources/cpu-architecture-001.png" alt="Alt text" /> </span>
-출처: <a href="https://mk28.tistory.com/15">https://mk28.tistory.com/15</a><br /></p>
+<p>이제 하나의 배열을 가지고 위에서 설명한 <code class="highlighter-rouge">선택 정렬</code>이 어떻게 진행되는지 알아보자.</p>
 
-<p>CPU는 크게 <code class="highlighter-rouge">제어장치</code>, <code class="highlighter-rouge">연산장치(ALU)</code>, <code class="highlighter-rouge">레지스터</code>와 각 구성 요소를 연결하는 <code class="highlighter-rouge">내부 버스</code>로 구성되어 있다.</p>
-
-<p><br /></p>
-
-<h3 id="-연산-장치">🔖 연산 장치</h3>
 <ul>
-  <li>명령어를 실행하기 위한 마이크로연산(산술연산과 논리연산)을 수행</li>
-  <li>연산에 필요한 데이터를 레지스터에서 가져오고 산술, 논리, 관계, 이동 등 다양한 연산을 수행</li>
-  <li>연산 결과를 다시 레지스터로 보냄</li>
+  <li>주어진 배열 중에 최소값을 찾는다.</li>
+  <li>그 값을 맨 앞에 위치한 값과 교체한다.</li>
+  <li>맨 처음 위치를 뺀 나머지 배열을 같은 방법으로 교체한다.</li>
 </ul>
 
+<p>다음과 같이 4명의 친구들의 키를 알고 있는데 순서대로 세우고 싶다.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>170cm, 180cm, 150cm, 160cm
+</code></pre></div></div>
+<p>위와 같이 키를 알고 있는 4명의 친구들 중 키가 제일 작은 <code class="highlighter-rouge">150cm</code>인 친구를 맨 앞에 세운다.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>150cm (4명 중 제일 작음)
+</code></pre></div></div>
+<p>키가 <code class="highlighter-rouge">150cm</code>인 친구는 맨 앞에 세웠으니, 이제 나머지 세 친구를 비교하여 키가 두 번째로 작은 <code class="highlighter-rouge">160cm</code>인 친구를 그 다음에 세운다.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>150cm, 160cm (150cm 빼고 남은 3명 중 제일 작음)
+</code></pre></div></div>
+<p>이제 키가 <code class="highlighter-rouge">70cm</code>, <code class="highlighter-rouge">180cm</code>인 친구만 남았다. 둘 중 <code class="highlighter-rouge">170cm</code>인 친구가 더 작기 때문에 그 다음에 세우고 <code class="highlighter-rouge">180cm</code>인 친구를 마지막에 세운다.</p>
+
 <p><br /></p>
 
-<h3 id="-제어-장치">🔖 제어 장치</h3>
-<ul>
-  <li>명령어를 순서대로 실행할 수 있도록 제어하는 장치</li>
-  <li>주기억장치에서 프로그램 명령어를 꺼내 <code class="highlighter-rouge">해독</code>하고, 그 결과에 따라 명령어 실행에 필요한 <code class="highlighter-rouge">제어 신호</code>를 기억장치, 연산장치, 입출력장치로 보냄</li>
-  <li>또한 이들 장치가 보낸 신호를 받아 다음에 수행할 동작을 결정</li>
-</ul>
+<p>즉, 크기 n의 배열이 주어졌을 때, index 0부터 n-1까지의 모든 index i에 대해, i번째 부터 n-1번째까지 값 중 가장 작은 값을 구해서 index i에 놓으면 정렬된 배열을 얻을 수가 있다. <code class="highlighter-rouge">모든 index에 대해서 그 index에 위치시킬 값을 "선택"하기 때문에 이 정렬 알고리즘을 "선택 정렬" 또는 "Selection Sort"</code>라고 부른다.</p>
 
 <p><br /></p>
 
-<h3 id="-레지스터">🔖 레지스터</h3>
-<ul>
-  <li>CPU(중앙 처리 장치)내에 있는 소규모의 고속 기억장치</li>
-  <li>명령어 주소, 코드, 연산에 필요한 데이터 련산 결과 등을 임시로 저장</li>
-  <li>용도에 따라 범용 레지스터와 특수 목적 레지스터로 구분</li>
-  <li>레지스터는 메모리 계층의 <code class="highlighter-rouge">최상위</code>에 위치하며 <code class="highlighter-rouge">가장 빠른 속도</code>로 접근 가능한 메모리이다.</li>
-  <li>중앙처리장치 종류에 따라 사용할 수 있는 레지스터 개수와 크기가 다름
-    <ul>
-      <li>범용 레지스터 : 연산에 필요한 데이터나 연산 결과를 임시로 저장</li>
-      <li>특수목적 레지스터 : 특별한 용도로 사용하는 레지스터</li>
-    </ul>
+<h2 id="gif로-이해하는-selection-sort"><span style="color:hsl(350, 100%, 66%);">GIF로 이해하는 Selection Sort</span></h2>
+
+<p><img src="/assets/resources/selection-sort-001.gif" /></p>
+
+<p><br /></p>
+
+<h2 id="특징"><span style="color:hsl(350, 100%, 66%);">특징</span></h2>
+<ol>
+  <li>선택 정렬은 정렬된 값을 배열의 맨 앞부터 하나씩 채워나가게 된다. 따라서, 뒤에 있는 <code class="highlighter-rouge">index로 갈수록 비교 범위가 하나씩 점점 줄어드는 특성</code>을 가지고 있다. 이 특성은 최대 값을 뒤에서 부터 채워나가는 버블 정렬과 동일한 특성을 가진다.</li>
+  <li>입력 배열이 이미 정렬되어 있건 말건 관계없이 동일한 연산량을 가지고 있기 때문에 최적화 여지가 적어서 시간복잡도가 <code class="highlighter-rouge">O(N^2)</code>으로 비효율적이다.</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="복잡도"><span style="color:hsl(350, 100%, 66%);">복잡도</span></h2>
+<ol>
+  <li>선택 정렬은 별도의 추가 공간을 사용하지 않고 주어진 배열이 차지하고 있는 공간 내에서 값들의 위치만 바꾸기 때문에 <code class="highlighter-rouge">O(1)</code>의 공간 복잡도를 가진다.</li>
+  <li>
+    <p>시간 복잡도는 우선 루프문을 통해 모든 인덱스에 접근해야 하기 때문에 기본적으로 <code class="highlighter-rouge">O(N)</code>을 시간을 소모하며, 하나의 루프에서는 현재 인덱스의 값과 다른 인덱스의 값들과 비교하여 최소 값을 찾은 후 현재 인덱스에 있는 값과 서로 자리를 변경해야 하기 때문에 <code class="highlighter-rouge">O(N)</code>의 시간이 필요하게 된다. 최종적으로 선택 정렬은 <code class="highlighter-rouge">O(N^2)</code>의 시간  복잡도를 가지는 정렬 알고리즘이다.
+<br /></p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 데이터의 개수가 n개라고 했을 때,
+ 첫 번째 회전에서의 비교횟수 : 1 ~ (n-1) =&gt; n-1
+ 두 번째 회전에서의 비교횟수 : 2 ~ (n-1) =&gt; n-2
+ ...
+
+ (n-1) + (n-2) + .... + 2 + 1 =&gt; n(n-1)/2
+</code></pre></div>    </div>
   </li>
-</ul>
+</ol>
 
 <p><br /></p>
 
-<h3 id="-특수-목적-레지스터의-종류">🔖 특수 목적 레지스터의 종류</h3>
-<ul>
-  <li>MAR (메모리 주소 레지스터) : <code class="highlighter-rouge">읽기</code>와 <code class="highlighter-rouge">쓰기</code> <code class="highlighter-rouge">연산</code>을 수행할 주기억장치 주소를 저장</li>
-  <li>PC (프로그램 카운터) : 다음에 실행될 <code class="highlighter-rouge">명령어의 주소</code>를 저장</li>
-  <li>SP (스택 포인터) : <code class="highlighter-rouge">스택</code>의 최상위 주소를 저장</li>
-  <li>IX (인덱스 레지스터) : 인덱스 주소 지정 방식에서 <code class="highlighter-rouge">인덱스</code>를 저장</li>
-  <li>IR (명령어 레지스터) : 명령어를 호출해서 해독하기 위해 <code class="highlighter-rouge">현재 명령어</code>를 임시로 저장</li>
-  <li>MBR (메모리 버퍼 레지스터) : <code class="highlighter-rouge">주기억장치의 내용</code>을 임시로 저장하는 역할</li>
-  <li>AC (누산기) : 산술 논리 장치의 <code class="highlighter-rouge">연산 결과</code>를 임시로 저장</li>
-  <li>PSR (프로그램 상태 레지스터) : <code class="highlighter-rouge">CPU의 현재 상태 정보</code>를 저장</li>
-</ul>
+<h2 id="python-코드"><span style="color:hsl(350, 100%, 66%);">Python 코드</span></h2>
+<p>거품 정렬과 마찬가지로 두 개의 반복문이 필요하다. 내부 반목문에서는 현재 index부터 마지막 index까지 최소값의 index를 찾아내고, 외부 반복문에서는 이 최소값의 index와 현재 index에 있는 값을 변경한다. 외부 반복문에서는 index <code class="highlighter-rouge">i</code>를 <code class="highlighter-rouge">0</code>에서 <code class="highlighter-rouge">n-2</code>(또는 <code class="highlighter-rouge">n-1</code>. 마지막 index에서는 남는 갓이 하나 밖에 없기 때문에 대소에 지장 없음)까지 진행, 내부 반복문에서 이미 정렬된 값들에서는 관심이 없기 때문에 index <code class="highlighter-rouge">j</code>를 <code class="highlighter-rouge">i</code>에서 <code class="highlighter-rouge">n-1</code>까지 진행시킨다. 각 index에 대해서 최소값을 찾기 위해 대소 비교는 여러번 일어나나 상호 교대는 한번만 일어난다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
 
-<p><br /></p>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+                
+        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<h2 id="cpu-연산동작-과정"><span style="color:hsl(350, 100%, 66%);">CPU 연산&amp;동작 과정</span></h2>
+    <span class="k">return</span> <span class="n">array</span>
 
-<h3 id="-연산">🔖 연산</h3>
-
-<p>CPU의 연산 순서는 <code class="highlighter-rouge">Fetch</code>-&gt;<code class="highlighter-rouge">Decode</code>-&gt;<code class="highlighter-rouge">Execute</code>-&gt;<code class="highlighter-rouge">Writeback</code>으로 이루어지며 각 과정의 설명은 다음과 같다.</p>
-<ul>
-  <li>Fetch(<code class="highlighter-rouge">인출</code>): 메모리상의 프로그램 카운터(PC)가 가리키는 명령어를 CPU가 가르키는 명령어를 CPU로 인출하여 적재</li>
-  <li>Decode(<code class="highlighter-rouge">해석</code>): 명령어의 해석. 이 단계에서 명령어의 종류와 타겟 등을 판단한다.</li>
-  <li>Execute(<code class="highlighter-rouge">실행</code>): 해석된 명령어에 따라 데이터에 대한 연산을 수행한다.</li>
-  <li>Writeback(<code class="highlighter-rouge">쓰기</code>): 명령어대로 처리 완료된 데이터를 메모리에 기록한다.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="-동작-과정">🔖 동작 과정</h3>
-<p><img src="/assets/resources/cpu-process-001.png" alt="Alt text" /></p>
-
-<p>(1) 보조기억장치에서 저장된 프로그램을 읽거나, 입력장치에서 입력받은 데이터를 주기억장치에서 읽는다.<br />
-(2) 주기억장치에서 읽어온 데이터를 중앙처리장치(CPU)가 읽고 처리한 후 다시 주기억장치로 보낸 후 저장한다.<br />
-(3) 주기억장치는 연산된 데이터를 출력장치에 보내거나 보조기억장치에 저장한다.<br />
-(4) 제어장치는 (1)-(3)과정에서 명령어가 순서대로 잘 실행되도록 제어하는 역할을 수행.<br /></p>
-
-<p><br /></p>
-
-<h2 id="cpu의-명령어"><span style="color:hsl(350, 100%, 66%);">CPU의 명령어</span></h2>
-
-<h3 id="-명령어-세트">🔖 명령어 세트</h3>
-<ul>
-  <li>명령어 세트는 CPU가 실행할 명령어의 집합이다.</li>
-  <li>명령어 세트는 실행할 연산을 나타내는 <code class="highlighter-rouge">연산 코드(Operation Code)</code>와 연산에 필요한 데이터나 데이터의 저장 위치를 나타내는 <code class="highlighter-rouge">피연산자(Operand)</code>로 구성된다.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="-연산-코드-operation-code">🔖 연산 코드 (Operation Code)</h3>
-
-<p>연산 코드는 실행하는 연산의 종류에 따라 다음과 같이 네 가지 기능으로 나뉜다.</p>
-
-<ul>
-  <li>연산 기능 : 사칙연산, 이동(shift), 보수 등의 산술연산과 논리곱, 논리합, 부정 등의 논리연산을 수행한다.</li>
-  <li>제어 기능 : 조건 분기와 무조건 분기 등을 사용하여 명령어의 실행 순서를 제어한다.</li>
-  <li>데이터 전달 기능 : 레지스터와 레지스터 사이, 레지스터와 주기억장치 사이에서 데이터를 전달한다.</li>
-  <li>입출력 기능 : 프로그램과 데이터를 주기억장치에 전달하고, 연산 결과는 출력장치에 전달한다.</li>
-</ul>
-
-<p><br /></p>
-
-<h3 id="-피연산자-operand">🔖 피연산자 (Operand)</h3>
-
-<p>피연산자에는 주소, 숫자/문자, 논리 데이터 등을 저장할 수 있다.</p>
-
-<ul>
-  <li>주소 : 기억장치 혹은 레지스터의 주소가 저장된다.</li>
-  <li>숫자/문자 : 숫자는 정수, 고정 소수점 수, 부동 소수점 수 및 각각의 코드로 저장되고 문자는 아스키코드로 저장된다.</li>
-  <li>논리 데이터 : 참 또는 거짓을 표현할 때 사용하며 비트나 플래그로 저장된다.</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="명령어-사이클"><span style="color:hsl(350, 100%, 66%);">명령어 사이클</span></h2>
-
-<p>CPU에서는 프로그램을 실행하기 위해 주기억장치에서 명령어를 순차적으로 <code class="highlighter-rouge">인출</code>하여 <code class="highlighter-rouge">해독</code>하고 <code class="highlighter-rouge">실행</code>하는 과정을 반복하는데, CPU가 <code class="highlighter-rouge">주기억장치에서 한 번에 하나의 명령어를 인출하여 실행하는데 필요한 일련의 활동</code>을 <code class="highlighter-rouge">명령어 사이클 (Instruction Cycle)</code>이라고 한다.</p>
-
-<p>명령어 사이클은 <code class="highlighter-rouge">인출</code> 사이클, <code class="highlighter-rouge">실행</code> 사이클, <code class="highlighter-rouge">간접</code> 사이클, <code class="highlighter-rouge">인터럽트</code> 사이클로 세분화 시킬 수 있는데, <code class="highlighter-rouge">인출 사이클과 실행 사이클은 항상 수행</code>되지만 / <code class="highlighter-rouge">간접 사이클과 인터럽트 사이클은 주소 지정방식이 필요할 때나 인터럽트 요구가 있을 때만</code> 수행된다.</p>
-
-<p><br /></p>
-
-<h3 id="-인출사이클과-특수-목적-레지스터의-동작-과정">🔖 인출사이클과 특수 목적 레지스터의 동작 과정</h3>
-
-<p><img src="/assets/resources/sycle-process-001.jpeg" alt="Alt text" /></p>
-<ul>
-  <li>프로그램 카운터(PC)에 저장된 주소를 메모리 주소 레지스터(MAR)로 전달 한다.</li>
-  <li>메모리 주소 레지스터(MAR)에 저장된 내용을 토대로 주기억장치의 해당 주소에서 명령어를 인출한다.</li>
-  <li>인출한 명령어를 메모리 버퍼 레지스터(MBR)에 저장한다.</li>
-  <li>다음 명령어를 인출하기 위해 프로그램 카운터 (PC)의 값을 증가 시킨다.</li>
-  <li>메모리 버퍼 레지스터(MBR)에 저장된 내용을 명령어 레지스터(IR)에 전달한다.</li>
-</ul>
-
-<p>위 과정을 다음과 같이 표현하기도 한다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>T0 : MAR &lt;- PC
-T1 : MBR &lt;- M[MAR], PC &lt;- PC + 1
-T2 : IR &lt;- MBR
+<span class="n">height</span> <span class="o">=</span> <span class="p">[</span><span class="mi">190</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">180</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">selection_sort</span><span class="p">(</span><span class="n">height</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="-실행-사이클과-특수-목적-레지스터의-동작-과정">🔖 실행 사이클과 특수 목적 레지스터의 동작 과정</h3>
+<h2 id="결론"><span style="color:hsl(350, 100%, 66%);">결론</span></h2>
+<p>버블 정렬과 유사하지만 조금 더 빠른 선택 정렬에 대해 정리해 보았다. 시간 측정을 해 보았지만 정말 미묘하게 더 빠른 타임을 가진다.</p>
 
-<p>다음은 인출 사이클로부터 명령어를 인출한 이후 명령어를 실행하는 과정인 실행 사이클의 과정이다.
-그 중에서도 더하기(ADD) 연산으로 과정을 살펴보자.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">timeit</span>
 
-<p><img src="/assets/resources/access-process-001.jpeg" alt="Alt text" /></p>
+<span class="k">def</span> <span class="nf">time_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
 
-<ul>
-  <li>명령어 레지스터(IR)의 내용을 메모리 주소 레지스터(MAR)로 전달한다.</li>
-  <li>메모리에 저장된 데이터 값을 메모리 버퍼 레지스터(MBR)에 저장한다.</li>
-  <li>누산기(AC)에 저장된 값에 ADD연산을 실행한다.</li>
-</ul>
+    <span class="k">def</span> <span class="nf">exec_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">exec_func</span>
 
-<p>실행 사이클도 인출 사이클과 마찬가지로 다음과 같이 표현 할 수 있다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ADD addr 명령어 연산
+<span class="o">@</span><span class="n">time_decorator</span>
+<span class="k">def</span> <span class="nf">selection_sort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
 
-T0 : MAR &lt;- IR(Addr)
-T1 : MBR &lt;- M[MAR]
-T2 : AC &lt;- AC + MBR
-</code></pre></div></div>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+                
+        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<p><br /></p>
+    <span class="k">return</span> <span class="n">array</span>
 
-<h3 id="실행-사이클에서는-프로그램-카운터를-증가시키지-않는-이유">실행 사이클에서는 프로그램 카운터를 증가시키지 않는 이유<br /></h3>
-<p>인출 사이클과 다르게 실행 사이클에서는 프로그램 카운터(PC)를 증가시키지 않는데, <code class="highlighter-rouge">이미 인출이 진행 되고 명령어 실행만 하면 되는 상황</code>이기 때문에 프로그램 카운터를 증가시킬 필요가 없다.
-즉, 이미 인출이 되어 명령어 레지스터(IR)에 메모리 버퍼 레지스터(MBR)의 값이 저장된 상태라는 의미이다.</p>
+<span class="n">select_arry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">selection_sort</span><span class="p">(</span><span class="n">select_arry</span><span class="p">))</span>
+
+<span class="c1"># 6.4999330788850784e-06
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+</span></code></pre></div></div>
 
       <br/>
       <!-- 블로그-하단-반응형 
@@ -449,12 +392,12 @@ T2 : AC &lt;- AC + MBR
   <div class="share">
       <h2>Share this post</h2>
       <div class="share-body">
-        <a href="http://twitter.com/share?text=[Computer Science] 중앙처리장치(CPU) 작동 원리?&amp;url=http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html"
+        <a href="http://twitter.com/share?text=[Algorithm] 선택 정렬 (Selection Sort)&amp;url=http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <span class="icon-twitter">
             </span>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
             <span class="icon-facebook">
             </span>
@@ -508,12 +451,10 @@ T2 : AC &lt;- AC + MBR
   <div class="page-control">
 	<div>
 		
-		<a id="prev" class="button" href="/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html">&laquo; 이전 글</a>
+		<a id="prev" class="button" href="/study/2023/01/31/%EC%A4%91%EC%95%99%EC%B2%98%EB%A6%AC%EC%9E%A5%EC%B9%98(CPU)-%EC%9E%91%EB%8F%99-%EC%9B%90%EB%A6%AC.html">&laquo; 이전 글</a>
 		
 	</div>
 	<div>
-		
-		<a id="next" class="button" href="/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html">다음 글 &raquo;</a>
 		
 	</div>
 </div>
@@ -523,6 +464,9 @@ T2 : AC &lt;- AC + MBR
       
       
         
+          
+          
+        
         
           
 
@@ -530,9 +474,6 @@ T2 : AC &lt;- AC + MBR
 
         
       
-        
-          
-          
         
         
           
