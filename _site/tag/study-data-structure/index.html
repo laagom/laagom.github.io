@@ -29,7 +29,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta property="og:title" content="[Algorithm] 거품 정렬 (Bubble Sort)">
+<meta property="og:title" content="Data Structure">
 <meta property="og:type" content="article">
 
 
@@ -44,15 +44,13 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[Algorithm] 거품 정렬 (Bubble Sort) &middot; 라곰(Lagom)</title>
+  <title>Data Structure &middot; 라곰(Lagom)</title>
 
 
 
-<meta name="description" content="거품 정렬 (Bubble Sort)
-
+<meta name="description" content="
 ">
-<meta property="og:description" content="거품 정렬 (Bubble Sort)
-
+<meta property="og:description" content="
 ">
 
 
@@ -67,15 +65,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html">
-<meta property="og:url" content="http://localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html">
+<link rel="canonical" href="http://localhost:4000/tag/study-data-structure/">
+<meta property="og:url" content="http://localhost:4000/tag/study-data-structure/">
 
 <link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
 
 
+  <link rel="prev" href="http://localhost:4000/tag/study-computer-science/">
 
 
-  <link rel="next" href="http://localhost:4000/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -168,20 +166,23 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <div id="_yPushState">
   <div class="fade-in">
-    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/lagom.png">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/sidebar-bg.jpeg">
       
 
-<article id="post-study/2023/01/25/거품 정렬(Bubble Sort)" class="post" role="article">
+
+  
+
+<article id="post-study/2023/02/24/해시(Hash)" class="post mb6" role="article">
   <header>
 
     <h1 class="post-title">
-      
-        [Algorithm] 거품 정렬 (Bubble Sort)
-      
+      <a href="/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html" data-flip="title">
+        [Data Structure] 해시(Hash)
+      </a>
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2023-01-25T00:00:00+09:00">25 Jan 2023</time>
+      <time datetime="2023-02-24T00:00:00+09:00">24 Feb 2023</time>
       
 
 
@@ -204,7 +205,7 @@ in <a href="/category/study/" data-flip="title">Study</a>
 
 
 
-on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
+on <a href="/tag/study-data-structure/" data-flip="title">Data Structure</a>
 
     </p>ß
 
@@ -217,316 +218,36 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   
-    <div class="markdown-body">
 
-      <div style="text-align:right; text-align: center">
-        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html"
-          target="_blank">
-          <img
-          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
-        </a>
-      </div>
+    <h1 id="해시hash">해시(Hash)</h1>
+<p>일반적으로 말하는 <code class="highlighter-rouge">해시(Hash)</code>는 해시 테이블(Hash Table)로 Key와 Value를 매핑해서 데이터를 저장하는 자료구조이다. <code class="highlighter-rouge">Python에서는 기본적으로 제공되는 딕셔너리 자료형이 해시 테이블과 동일한 구조를 가진다.</code></p>
 
 
-
-<style>
-.googleads { display:block; width:98%; height: 280px; }
-@media(min-width: 600px) { .googleads { display: none; } }
-</style>
-<!--구글 에드센스
-<ins class="adsbygoogle myAd1190"
-    data-ad-client="ca-pub-1200017190012992"
-></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<br/>
--->
-      <!--게시물 내용-->
-      <h1 id="거품-정렬-bubble-sort">거품 정렬 (Bubble Sort)</h1>
-
-<h2 id="개념"><span style="color:hsl(350, 100%, 66%);">개념</span></h2>
-<p>거품 정렬은 뒤에서 부터 앞으로 정렬을 해나가는 구조를 가지고 있다. (오름차순)즉, 배열 내의 인접한 값들을 앞뒤로 비교하며 자리를 바꾸는데 맨 뒷자리로 제일 큰 값을 보내는 작업을 수행한다. 이렇게 하나씩 큰 값을 뒤쪽으로 보내 채워 나가며 앞으로 정렬해 왔을 때 작은 수 부터 큰 수 까지 오름차순으로 정렬된 배열을 가지는 정렬이다. 큰 값을 계속해서 뒤로 보내는 모습이 마치 방울이 이동하는 것과 같이 보여서 거품 정렬이라는 이름이 붙어졌다.</p>
-
-<p>이제 하나의 배열을 가지고 위에서 설명한 거품정렬이 어떻게 진행되는지 알아보자. 다음과 같이 <code class="highlighter-rouge">1</code>부터 <code class="highlighter-rouge">5</code>까지 총 5개의 숫자가 들어있는 배열이 존재한다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[3, 2, 4, 5, 1]
-</code></pre></div></div>
-<p>먼저 3, 2를 비교, 3이 2보다 크기 때문에 자리를 바꾸며 큰 값을 뒤로 보내준다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[3, 2, 4, 5, 1]
-
-3 &gt; 2 =&gt; switch 
-[2, 3, 4, 5, 1]
-</code></pre></div></div>
-<p>그 다음 3, 4를 비교, 3은 4보다 크지 않기 때문에 그대로 유지한다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 3, 4, 5, 1]
-
-3, 4 =&gt; keep     
-</code></pre></div></div>
-<p>그 다음 4, 5를 비교, 4는 5보다 크지 않기 때문에 그대로 유지한다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 3, 4, 5, 1]
-
-4, 5 =&gt; keep
-</code></pre></div></div>
-<p>그 다음 5, 1를 비교, 5는 1보다 크기 때문에 자리를 바꾸며 큰 값을 뒤로 보내준다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 3, 4, 5, 1]
-
-5 &gt; 1 =&gt; switch
-[2, 3, 4, 1, 5]
-</code></pre></div></div>
-
-<p>이렇게 값을 처음부터 비교해가며 앞의 값이 뒤의 값보다 큰 경우 자리를 바꿔주면 제일 큰 값을 맨 뒤로 보내줄 수 있다. 위의 과정은 제일 큰 값을 맨 뒤로 보내주는 작업이며 그다음은 두번째 큰 값을 제일 큰 값 앞으로 보내주는 과정을 진행해 주면 된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>origin: [3, 2, 4, 5, 1]
------------------------
-loop 1: [2, 3, 4, 1, 5]
-                   *
-loop 2: [2, 3, 1, 4, 5]
-                *  *
-loop 3: [2, 1, 3, 4, 5]
-             *  *  *
-loop 4: [1, 2, 3, 4, 5]
-          *  *  *  *
-loop 5: [1, 2, 3, 4, 5]
-       *  *  *  *  *
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h2 id="gif로-이해하는-bubble-sort"><span style="color:hsl(350, 100%, 66%);">GIF로 이해하는 Bubble Sort</span></h2>
-
-<p><img src="/assets/resources/bubble-sort-001.gif" /></p>
-
-<p><br /></p>
-
-<h2 id="특징"><span style="color:hsl(350, 100%, 66%);">특징</span></h2>
-<ol>
-  <li>거품 정렬은 점점 큰 값들이 뒤에서 앞으로 쌓여 이동하기 때문에 정렬의 범위가 하나씩 줄어든다. 다음 loop에서 제일 뒤로 간 큰 값은 비교를 할 필요가 없기 때문이다.</li>
-  <li>제일 작은 값을 맨 앞으로 이동시키는 선택 정렬과 정렬 방향이 반대이다.</li>
-  <li>선택정렬에 비해 자리 변경이 더 많이 일어난다.</li>
-  <li>위의 loop 4, loop 5를 보면 필요없는 과정이 있어 최적화가 필요하다.</li>
-</ol>
-
-<p><br /></p>
-
-<h2 id="복잡도"><span style="color:hsl(350, 100%, 66%);">복잡도</span></h2>
-<ol>
-  <li>거품 정렬은 별도의 추가 공간을 사용하지 않고 배열안에서 값들의 위치가 변경되기 때문에 <code class="highlighter-rouge">0(1)</code>의 공간 복잡도를 가진다.</li>
-  <li>시간 복잡도는 반복문을 통해 맨 뒤에서 맨 앞까지 모든 인덱스에 접근하기 때문에 기본적으로 <code class="highlighter-rouge">0(N)</code> 시간을 소모하며, 하나의 루프에서는 인접한 값들의 대소 비교 및 자리 교대를 위해서 <code class="highlighter-rouge">0(N)</code> 시간을 필요하게 된다. 따라서 거품 정렬은 총 <code class="highlighter-rouge">0(N^2)</code>의 시간 복잡도를 가진다.</li>
-  <li>정렬이 이미 완료된 배열인 경우에는 0(N) 시간 복잡도를 가진다.</li>
-</ol>
-
-<p><br /></p>
-
-<h2 id="python-코드"><span style="color:hsl(350, 100%, 66%);">Python 코드</span></h2>
-<p>선택 정렬과 마찬가지로 두 개의 반복문이 필요하다. 내부 반복문에서는 첫번째 값부터 이전 패스에서 뒤로 보내놓은 값이 있는 위치 전까지 앞뒤 값을 계속해서 비교해나가면서 앞의 값이 뒤의 값보다 클 경우 자리 변경(switch)을 한다. 외부 반복문에서는 뒤에서 부터 앞으로 정렬 범위를 <code class="highlighter-rouge">n-1</code>부터 <code class="highlighter-rouge">1</code> 까지 줄여나간다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bubbleSort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="n">i</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">array</span>
-
-<span class="n">bubble_arry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">bubbleSort</span><span class="p">(</span><span class="n">bubble_arry</span><span class="p">))</span>
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h2 id="최적화"><span style="color:hsl(350, 100%, 66%);">최적화</span></h2>
-<p>이전 loop에서 앞뒤 자리 변경(switch)이 한 번도 일어나지 않았다면 정렬도지 않는 값이 하나도 없었다고 할 수 있다. 따라서 이러한 경우 loop를 수행하지 않아도 된다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>origin: [1, 2, 3, 5, 4]
-------------------------
- loop 1: [1, 2, 3, 4, 5] =&gt; switch 있음
-                      *
- loop 2: [1, 2, 3, 4, 5] =&gt; switch 없음
-                   *  *
-=&gt; 이전 패스에서 loop이 한 번도 없었으니 종료
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">timeit</span>
-
-<span class="k">def</span> <span class="nf">time_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">exec_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span>
-    <span class="k">return</span> <span class="n">exec_func</span>
-
-<span class="o">@</span><span class="n">time_decorator</span>
-<span class="k">def</span> <span class="nf">bubbleSort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-        <span class="n">switch</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="o">-</span><span class="n">i</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-                <span class="n">switch</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">switch</span><span class="p">:</span>
-            <span class="k">break</span>
-
-    <span class="k">return</span> <span class="n">array</span>
-
-<span class="n">bubble_arry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">bubbleSort</span><span class="p">(</span><span class="n">bubble_arry</span><span class="p">))</span>
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h2 id="최적화-1"><span style="color:hsl(350, 100%, 66%);">최적화</span></h2>
-<p>최적화 하여 코드를 변경하고 시간을 측정해 봤을때 실행 속도가 많이 빨라졌다는 느낌은 없었다. 하지만 최적화 전보다 빈번하게 더 시간이 단축되어 실행되는 경우가 발생한 것을 보니 코드 최적화가 조금은 된 것으로 보인다.</p>
-
-      <br/>
-      <!-- 블로그-하단-반응형 
-      <br/>
-      
-      <ins class="adsbygoogle"
-          style="display:block; width:100%; height:300px;"
-          data-ad-client="ca-pub-1200017190012992"
-          data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      
-    </div>
-    
-    <script>
-
-    </script>
-    -->
+    <p class="read-more"><a class="heading" href="/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html" data-flip="title">Continue reading </a></p>
   
 
 </article>
 
-  <hr class="dingbat" />
-<!--공유, 트위터, 페이스북-->
-  <div class="share">
-      <h2>Share this post</h2>
-      <div class="share-body">
-        <a href="http://twitter.com/share?text=[Algorithm] 거품 정렬 (Bubble Sort)&amp;url=http://localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html"
-    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-            <span class="icon-twitter">
-            </span>
-        </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html"
-    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-            <span class="icon-facebook">
-            </span>
-        </a>
-    </div>
-  </div>
-  <br/>
 
 
 
-
-
-
-  <aside class="author1" role="complementary">
-    <div class="author">
-  <h2 class="page-title hr">
-    About
-  </h2>
-<div class="author-body">
-  
-    
-  
-
-  
-
-  <img
-    src="/assets/img/me.jpeg"
-    class="me"
-    alt="JeongYong Cho"
-    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
-    
-  />
-
-
-  
-  <div class="author-body-description">
-    <p>PS(problem solver) 개발자 조정용입니다.</p>
-
-  </div>
-</div>
-</div>
-
-  </aside>
-
-
-
-
-
-<aside class="related" role="complementary">
-  <h2 class="hr">Related Posts</h2>
-  <div class="page-control">
-	<div>
-		
-	</div>
-	<div>
-		
-		<a id="next" class="button" href="/study/2023/01/25/%EC%BB%B4%ED%93%A8%ED%84%B0%EB%9E%80.html">다음 글 &raquo;</a>
-		
-	</div>
-</div>
-  <ul class="related-posts">
-    
+<h2 class="sr-only">Pagination</h2>
+<nav class="pagination heading" role="navigation">
+  <ul>
+    <li class="pagination-item older" >
       
+        <span>Older</span>
       
+    </li>
+    <li class="pagination-item newer" >
       
-        
-        
-          
-
-
-
-        
+        <span>Newer</span>
       
-        
-        
-          
-
-
-
-        
-      
-        
-        
-          
-
-
-
-        
-      
-        
-        
-      
-    
+    </li>
   </ul>
-</aside>
+</nav>
 
 
-
-      
-        <aside class="comments" role="complementary">
-  <h2>Comments</h2>
-  <hr/>
-
-  <script src="https://utteranc.es/client.js"
-        repo="laagom/lagom-blog-comments"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
-</aside>
 
       
 
@@ -570,7 +291,7 @@ loop 5: [1, 2, 3, 4, 5]
   </div>
   <div id="_yDrawer">
   <div id="_sidebar" class="sidebar">
-    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/lagom.png)"></div>
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/sidebar-bg.jpeg)"></div>
     <header class="sidebar-sticky" role="banner">
       <br/>
 
@@ -700,7 +421,7 @@ loop 5: [1, 2, 3, 4, 5]
          
            
              <li>
-               <a class="sidebar-nav-subitem" href="/tag/study-data-structure/">Data Structure</a>
+               <a class="sidebar-nav-subitem active" href="/tag/study-data-structure/">Data Structure</a>
              </li>
            
          

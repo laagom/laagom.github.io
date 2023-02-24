@@ -2,6 +2,22 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
     <url>
+      <loc>http://localhost:4000/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html</loc>
+      
+        <lastmod>2023-02-24T00:00:00+09:00</lastmod>
+      
+
+      
+        <changefreq>weekly</changefreq>
+      
+
+      
+          <priority>1.0</priority>
+      
+
+    </url>
+  
+    <url>
       <loc>http://localhost:4000/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html</loc>
       
         <lastmod>2023-02-02T00:00:00+09:00</lastmod>
