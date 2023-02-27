@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta property="og:title" content="[Data Structure] 해시 충돌(Hash Collision)">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>[Data Structure] 해시 충돌(Hash Collision) &middot; 라곰(Lagom)</title>
+
+
+
+<meta name="description" content="해시 충돌(Hash Collision)
+앞서 해시(Hash)가 무엇인지? 어떻게 사용하는지 기본적인 자료구조 해시(Hash)에 대해 알아 보았다.
+
+">
+<meta property="og:description" content="해시 충돌(Hash Collision)
+앞서 해시(Hash)가 무엇인지? 어떻게 사용하는지 기본적인 자료구조 해시(Hash)에 대해 알아 보았다.
+
+">
+
+
+
+ <!-- tipuesearch -->
+ <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html">
+<meta property="og:url" content="http://localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html">
+
+<link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html">
+
+
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2);margin-left:45px;color:#939393}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+<br>
+  <form action="/search" class="tipue_search_wrapper">
+    <div class="tipue_search_left">
+      <img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+    </div>
+    <div class="tipue_search_right">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+      <div style="clear: both;"></div>
+    </form>
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/lagom.png">
+      
+
+<article id="post-study/2023/02/27/해시 충돌(Hash Collision)" class="post" role="article">
+  <header>
+
+    <h1 class="post-title">
+      
+        [Data Structure] 해시 충돌(Hash Collision)
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2023-02-27T00:00:00+09:00">27 Feb 2023</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/study/" data-flip="title">Study</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/study-data-structure/" data-flip="title">Data Structure</a>
+
+    </p>ß
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+      <div style="text-align:right; text-align: center">
+        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html"
+          target="_blank">
+          <img
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
+        </a>
+      </div>
+
+
+
+<style>
+.googleads { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .googleads { display: none; } }
+</style>
+<!--구글 에드센스
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-1200017190012992"
+></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+-->
+      <!--게시물 내용-->
+      <h1 id="해시-충돌hash-collision">해시 충돌(Hash Collision)</h1>
+<p>앞서 <a href="https://laagom.github.io/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html">해시(Hash)가 무엇인지?</a> 어떻게 사용하는지 기본적인 자료구조 해시(Hash)에 대해 알아 보았다.</p>
+
+<p>Hash Table은 몇가지 기본 기능을 제공하는데</p>
+<ul>
+  <li>데이터 삽입(저장)<br />
+  Hash Table에서 데이터를 저장하기 위해 먼저 Hash Function을 이용하여 key값을 hash로 변경한다. 이후 미리 준비해둔 저장소(bucket, slot) 중에 알맞는 hash값을 찾아 value를 저장한다. 이 과정은 <code class="highlighter-rouge">시간복잡도 O(1)</code> 을 가진다.</li>
+  <li>데이터 삭제<br />
+  저장되어 있는 값을 삭제하기 위해서 bucket에서 삭제하려고 하는데 key와 매칭되는 value값을 찾아서 삭제한다. 이러한 과정은 <code class="highlighter-rouge">시간복잡도 O(1)</code>을 가진다.</li>
+  <li>데이터 검색<br />
+  key를 이용하여 value를 찾아내는 과정이며, 먼저 key값과 hash function을 이용해 hash를 찾아내고 해당 hash로 value값을 찾을 수 있다. 이 과정은 <code class="highlighter-rouge">시간복잡도 O(1)</code>을 가진다.</li>
+</ul>
+
+<p>위와 같이 hash table은 데이터 저장, 삭제, 검색이 많이 필요한 경우 자주 사용되며 각각 기능마다 <code class="highlighter-rouge">시간복잡도 O(1)</code>을 가지는 아주 효율적인 자료구조이다.</p>
+
+<p>하지만 효율적인 만큼 <code class="highlighter-rouge">단점도</code> 존재하는데 먼저 hash값들을 저장할 공간(bucket)을 지정해야하므로 일반적으로 <code class="highlighter-rouge">저장 공간이 많이 필요</code>로한다.</p>
+
+<p>또한 여러 key에 해당하는 hash(주소)가 동일한 경우 <code class="highlighter-rouge">해시 충돌(Hash Collision)</code>이 발생한다.</p>
+
+<h2 id="해시-충돌hash-collision이란">해시 충돌(Hash Collision)이란?</h2>
+<p>위에서 hash table의 단점으로 언급한 여러 key에 해당하는 hash가 동일한 경우를 <code class="highlighter-rouge">해시 충돌(Hash Collision)</code>이라고 부른다.</p>
+
+<p><img src="/assets/resources/hash_collision-001.png" alt="Alt text" /></p>
+
+<p><a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=alwaysneoi&amp;logNo=100164276686">비둘기집의 원리</a>로 인해 hash를 이용한 자료구조에서는 무조건적으로 일어날 수 밖에 없는 현상이라고 한다.</p>
+
+<p>해시 함수(hash function)가 모든 입력에 대해 항상 다른 해시 값을 부여할 수 있다면 이상적이지만 모든 데이터에 대해 알고 있지 않다면 완벽한 해시 함수(hash function)를 작성하는 것은 불가능하다.</p>
+
+<p>위의 이미지와 같이 John Smith와 Sandra Dee가 해시 함수(hash function)을 통과하면 02라는 동일한 hash값을 부여받게 된다. 즉, 데이터는 많은데 공간이 제약되어 있어 동일한 hash값을 부여 받아 충돌이 일어나는 것이다. 공간을 넓힐 수 있다면 최대한 넓히는 게 좋지만 현실의 메모리는 한정되어 있기때문에 알고리즘을 설계할때 충돌을 최소화할 수 있는지 충돌이 발생했을 때 어떤 방식으로 처리할지를 잘 생각해 놔야 한다.</p>
+
+<p><br /></p>
+
+<h2 id="해시-테이블hash-table-구현">해시 테이블(Hash Table) 구현</h2>
+<p>먼저 Python을 이용하여 Hash 데이터 구조와 여러 기능을 간단히 구현해보자. 아래는 Python을 이용하여 hash table을 List로 구현한 것이다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HashTable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">table_size</span>      <span class="c1"># 총 공간(bucket) 수
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>     <span class="c1"># 빈 hash table 생성     
+</span>    
+    <span class="k">def</span> <span class="nf">getKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>     <span class="c1"># key(문자) 첫 문자의 유니코드를 반환
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+    
+    <span class="k">def</span> <span class="nf">hashFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>    <span class="c1"># key의 hash 값을 반환
+</span>        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+    
+    <span class="k">def</span> <span class="nf">getAddress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>      <span class="c1"># hash address를 반환
+</span>        <span class="n">myKey</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashFunction</span><span class="p">(</span><span class="n">myKey</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hash_address</span>
+    
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>     <span class="c1"># 데이터 저장
+</span>        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>    <span class="c1"># key에 해당하는 value 반환
+</span>        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">h_table</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="mi">1111</span><span class="p">)</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'b'</span><span class="p">,</span> <span class="mi">2222</span><span class="p">)</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'c'</span><span class="p">,</span> <span class="mi">3333</span><span class="p">)</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'d'</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span> <span class="c1"># [0, 1111, 2222, 3333, 4444, 0, 0, 0]
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">'d'</span><span class="p">))</span> <span class="c1"># 4444
+</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'d'</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span> <span class="c1"># [0, 1111, 2222, 3333, 0, 0, 0, 0]
+</span></code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="해시-충돌-시-알고리즘-2가지">해시 충돌 시 알고리즘 2가지</h2>
+<p>충돌은 불가피하니 충돌 시 데이터 처리하는 2가지 방법이 존재한다.</p>
+
+<p><br /></p>
+
+<h3 id="-chaningopen-hashing">🔖 Chaning(Open Hashing)</h3>
+<p>해시 테이블 저장공간 외의 공간을 활용하는 기법인 Chaning(체이닝)방법이다.</p>
+
+<p>즉, 충돌이 일어나면, Linked List로 데이터를 추가로 뒤에 연결시켜서 저장하는 기법이다. 
+<img src="/assets/resources/hash%20collision(linked%20list)-001.png" alt="Alt text" /></p>
+
+<p>Python은 List가 있기 때문에 Linked List로 반드시 만들 필요는 없다. 모든 공간을 List형식으로 만들어서 값이 중복되면 리스트에 하나씩 추가하는 방식으로 구현이 가능하다.</p>
+
+<p><code class="highlighter-rouge">장점</code>은 모든 값을 넣을 수 있다는 것과 데이터가 일단 저장이 되므로 메모리 소모가 적다.</p>
+
+<p><code class="highlighter-rouge">단점</code>은 Chaing을 통해 hash table을 생성하였을 때 기능들의 시간 복잡도가 O(n)까지 늘어날 수 있다.</p>
+
+<p>하지만 충돌이 일어나는 곳에 계속 데이터가 늘어나게 되면 한 공간에만 저장되는 쏠림 현상이 일어날 수 있어서 검색을 할 때는 좋지 않은 현상이다.</p>
+
+<p><br /></p>
+
+<h3 id="-chaning-과정동작-방식">🔖 Chaning 과정(동작 방식)</h3>
+<ul>
+  <li>키의 해시값을 계산한다.</li>
+  <li>해시 값에 해당하는 리스트 인덱스를 구한다.</li>
+  <li>같은 해시 값을 가진 키가 있다면(Hash Collision) List로 연결한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Chaining</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">table_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">getKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+    
+    <span class="k">def</span> <span class="nf">hashFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+    
+    <span class="k">def</span> <span class="nf">getAddress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">myKey</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashFunction</span><span class="p">(</span><span class="n">myKey</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hash_address</span>
+    
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># 해시 충돌 시
+</span>            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">])):</span> <span class="c1"># 빈 bucket 탐색
+</span>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># 해시 충돌 시
+</span>            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span> <span class="c1"># 일치하는 key 값 찾음 
+</span>                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># 일치하는 value 반환
+</span>            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">][</span><span class="n">a</span><span class="p">]</span>
+                    <span class="k">return</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">h_table</span> <span class="o">=</span> <span class="n">Chaining</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'aa'</span><span class="p">,</span> <span class="s">'1111'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">'aa'</span><span class="p">))</span> <span class="c1"># 1111
+</span>
+    <span class="n">data1</span> <span class="o">=</span> <span class="s">'aa'</span>
+    <span class="n">data2</span> <span class="o">=</span> <span class="s">'ab'</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>   <span class="c1"># 97
+</span>    <span class="k">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">data2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>   <span class="c1"># 97  같은 hash 값을 가짐 -&gt; 해시 충돌
+</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'ab'</span><span class="p">,</span> <span class="s">'2222'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span>  <span class="c1"># [0, [['aa', '1111'], ['ab', '2222']], 0, 0, 0, 0, 0, 0]
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">'aa'</span><span class="p">))</span>  <span class="c1"># 1111
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">'ab'</span><span class="p">))</span>  <span class="c1"># 2222
+</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'aa'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span>  <span class="c1"># [0, [['ab', '2222']], 0, 0, 0, 0, 0, 0]
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'Data'</span><span class="p">))</span> <span class="c1"># False
+</span></code></pre></div></div>
+
+<p>실제로 8개의 공간에 9개의 데이터를 넣어보면 무조건 1개 이상 충돌이 날수밖에 없기 때문에 chaning기법에 의해 공간안에 리스트 길이가 2이상인 경우가 발생한다.</p>
+
+<p><br /></p>
+
+<h3 id="-linear-probing-기법">🔖 Linear probing 기법</h3>
+<p>Linear probing은 -폐쇄 해시 또는 Close Hashing 기법 중 하나로 Hash Table 저장공간 안에서 충돌 문제를 해결하는 기법이다. 즉, 충돌이 일어나면 해당 Hash Address의 다음 address부터 맨 처음 나오는 빈 공간에 저장하는 기법이다. chaining처럼 한쪽 쏠림현상을 없애고 저장공간 활용도를 높이기 위한 기법이다.</p>
+
+<p><img src="/assets/resources/linear-probing.png" alt="Alt text" /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">OpenAddressing</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">table_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+        
+    <span class="k">def</span> <span class="nf">getKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span>
+    
+    <span class="k">def</span> <span class="nf">hashFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">getAddress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">myKey</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashFunction</span><span class="p">(</span><span class="n">myKey</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hash_address</span>
+    
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>    <span class="c1"># hash 의 값이 이미 존재할때 (해시충돌)
+</span>            <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hash_address</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span>
+                    <span class="k">return</span>
+                <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span>
+                    <span class="k">return</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>    <span class="c1"># hash 가 비었을때
+</span>            <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">hash_address</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">]</span>
+            
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hash_address</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">hash_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAddress</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hash_address</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">hash_table</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">return</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
+    
+    <span class="n">h_table</span> <span class="o">=</span> <span class="n">OpenAddressing</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">data1</span> <span class="o">=</span> <span class="s">'aa'</span>
+    <span class="n">data2</span> <span class="o">=</span> <span class="s">'ab'</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">data1</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">ord</span><span class="p">(</span><span class="n">data2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>    <span class="c1">## 97 97  -&gt; 해시 충돌
+</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'aa'</span><span class="p">,</span> <span class="s">'1111'</span><span class="p">)</span> 
+    <span class="n">h_table</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">'ab'</span><span class="p">,</span> <span class="s">'2222'</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span>  <span class="c1"># [0, ['aa', '1111'], ['ab', '2222'], 0, 0, 0, 0, 0]
+</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s">'ab'</span><span class="p">))</span>  <span class="c1"># 2222
+</span>
+    <span class="n">h_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s">'aa'</span><span class="p">)</span> 
+    <span class="k">print</span><span class="p">(</span><span class="n">h_table</span><span class="o">.</span><span class="n">hash_table</span><span class="p">)</span>  <span class="c1"># [0, 0, ['ab', '2222'], 0, 0, 0, 0, 0]
+</span></code></pre></div></div>
+<p>위의 chaining와 다르게 한 저장소에 저장되는 것이 아니라 다음 저장소에 되는 모습을 볼 수 있고 삭제 시에도 동일한 hash 값을 받아 저장되었더라도 delete()처리 시 해당 key와 동일한 값을 찾아 삭제할 수 있게 하였다.</p>
+
+<p><br /></p>
+
+<h2 id="충돌예방을-위해-할-수-있는-것">충돌예방을 위해 할 수 있는 것</h2>
+<p>충돌 방지를 위해서는 2가지 조치를 취할 수 있다.</p>
+<ul>
+  <li>공간을 늘린다.</li>
+  <li>해시함수를 좋은 걸로 사용한다.</li>
+</ul>
+
+<p>공간을 최대한 늘리던지 그게 아니면 충돌이 잘 안되는 해시함수를 사용하면 된다.</p>
+
+<p><br /></p>
+
+<h2 id="해시함수hash-function의-중요성">해시함수(Hash Function)의 중요성</h2>
+<p>해시테이블(Hash Table)의 충돌은 불가피하다. 충돌은 왠만하면 피하는게 상책이다. 그러기 위해선 해시함수를 잘 정해서 충돌을 방지해야한다.</p>
+
+<p>해시함수를 거쳐 나온 hash_address를 고정 값으로 만드는 것도 한 방법이다. hash()함수는 키 값 고정이 안되서 이를 고정값으로 만들 수 있는 라이브러리가 있다. hashlib라는 라이브러리인데 SHA1, SHA224, SHA256, SHA384, SHA512 등 좋은 해시 함수를 사용할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="키값을-고정시켜야-하는-이유시간-복잡도">키값을 고정시켜야 하는 이유(시간 복잡도)</h2>
+<p>키 값을 고정시켜야 하는 이유는 충돌 기복을 줄일 수 있기 때문이다.</p>
+<ul>
+  <li>충돌이 하나도 일어나지 않았을 경우 O(1)</li>
+  <li>충돌이 모두 일어나면 O(n)</li>
+</ul>
+
+<p>데이터가 많으면 많을수록 충돌이 일어날 확률이 높아지는데 충돌이 안일어난다면 시간복잡도를 많이 줄일 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="마치며">마치며</h2>
+<p>해시테이블(Hash Table)의 충돌 방지 방법에 대해 알아보았다. 위에서 알아본 방법들은 자료구조와 알고리즘을 위해 학습한거지만 Python에서는 Dictionary로 하기 때문에 아마 거의 사용하지 않을 것 같다.</p>
+
+      <br/>
+      <!-- 블로그-하단-반응형 
+      <br/>
+      
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-1200017190012992"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      
+    </div>
+    
+    <script>
+
+    </script>
+    -->
+  
+
+</article>
+
+  <hr class="dingbat" />
+<!--공유, 트위터, 페이스북-->
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=[Data Structure] 해시 충돌(Hash Collision)&amp;url=http://localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/02/27/%ED%95%B4%EC%8B%9C-%EC%B6%A9%EB%8F%8C(Hash-Collision).html"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author1" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="JeongYong Cho"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>PS(problem solver) 개발자 조정용입니다.</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+  <div class="page-control">
+	<div>
+		
+		<a id="prev" class="button" href="/study/2023/02/24/%ED%95%B4%EC%8B%9C(Hash).html">&laquo; 이전 글</a>
+		
+	</div>
+	<div>
+		
+	</div>
+</div>
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+        
+        
+          
+
+
+
+        
+      
+        
+        
+          
+
+
+
+        
+      
+        
+        
+          
+
+
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <script src="https://utteranc.es/client.js"
+        repo="laagom/lagom-blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2023.01. by 라곰</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://laagom.github.io/">라곰</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-1200017190012992"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-1200017190012992"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/lagom.png)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+
+      <div class="sidebar-about">
+        
+        <h1><a id="_title" href="/">라곰(Lagom)</a></h1>
+        <p>라곰 블로그</p>
+
+      </div>
+      <p>백수개발자의 지식 저장소.</p>
+
+      
+      
+      
+      <br/>
+      <br/>
+      
+      <div style="text-align: center;">
+        <a href="https://hits.seeyoufarm.com">
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Flaagom.github.io&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+        </a>
+      </div>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/portfolio.html">Portfolio</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about.html">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/project/">Project</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/study/">Study</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-algorithm/">Algorithm</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-computer-science/">Computer Science</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-data-structure/">Data Structure</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">Etc</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+      <br/>
+      
+      <br/>
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/laagom">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://laagom.tistory.com/">
+    <span class="icon-blogger" title="Blogger"></span>
+    <span class="sr-only">Blogger</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'G-xxxx', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>
