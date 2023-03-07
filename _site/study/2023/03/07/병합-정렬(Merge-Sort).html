@@ -29,7 +29,7 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta property="og:title" content="[Algorithm] 삽입 정렬 (Insertion Sort)">
+<meta property="og:title" content="[Algorithm] 병합 정렬 (Merge Sort)">
 <meta property="og:type" content="article">
 
 
@@ -44,16 +44,16 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 
 
 
-  <title>[Algorithm] 삽입 정렬 (Insertion Sort) &middot; 라곰(Lagom)</title>
+  <title>[Algorithm] 병합 정렬 (Merge Sort) &middot; 라곰(Lagom)</title>
 
 
 
-<meta name="description" content="삽입 정렬(Insertion Sort)
-정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.
+<meta name="description" content="병합 정렬(Merge Sort)
+합병 정렬이라고도 부르며, 퀵 정렬(Quick Sort)과 동일하게 분할 정복 방법을 통해 구현한다.
 
 ">
-<meta property="og:description" content="삽입 정렬(Insertion Sort)
-정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.
+<meta property="og:description" content="병합 정렬(Merge Sort)
+합병 정렬이라고도 부르며, 퀵 정렬(Quick Sort)과 동일하게 분할 정복 방법을 통해 구현한다.
 
 ">
 
@@ -69,17 +69,15 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
 <!-- =============== -->
 <!-- LINKS           -->
 <!-- =============== -->
-<link rel="canonical" href="http://localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html">
-<meta property="og:url" content="http://localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html">
+<link rel="canonical" href="http://localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html">
+<meta property="og:url" content="http://localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html">
 
 <link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
 
 
-  <link rel="prev" href="http://localhost:4000/study/2023/03/03/Web-Framework.html">
+  <link rel="prev" href="http://localhost:4000/study/2023/03/05/%ED%80%B5-%EC%A0%95%EB%A0%AC(Quick-Sort).html">
 
 
-
-  <link rel="next" href="http://localhost:4000/study/2023/03/05/%ED%80%B5-%EC%A0%95%EB%A0%AC(Quick-Sort).html">
 
 
 <link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
@@ -175,17 +173,17 @@ Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
     <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/lagom.png">
       
 
-<article id="post-study/2023/03/05/삽입 정렬(Insertion Sort)" class="post" role="article">
+<article id="post-study/2023/03/07/병합 정렬(Merge Sort)" class="post" role="article">
   <header>
 
     <h1 class="post-title">
       
-        [Algorithm] 삽입 정렬 (Insertion Sort)
+        [Algorithm] 병합 정렬 (Merge Sort)
       
     </h1>
 
     <p class="post-date heading">
-      <time datetime="2023-03-05T00:00:00+09:00">05 Mar 2023</time>
+      <time datetime="2023-03-07T00:00:00+09:00">07 Mar 2023</time>
       
 
 
@@ -224,10 +222,10 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
     <div class="markdown-body">
 
       <div style="text-align:right; text-align: center">
-        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html"
+        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html"
           target="_blank">
           <img
-          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
         </a>
       </div>
 
@@ -247,134 +245,133 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
 <br/>
 -->
       <!--게시물 내용-->
-      <h1 id="삽입-정렬insertion-sort">삽입 정렬(Insertion Sort)</h1>
-<p>정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.</p>
+      <h1 id="병합-정렬merge-sort">병합 정렬(Merge Sort)</h1>
+<p>합병 정렬이라고도 부르며, <a href="https://laagom.github.io/study/2023/03/05/%ED%80%B5-%EC%A0%95%EB%A0%AC(Quick-Sort).html">퀵 정렬(Quick Sort)</a>과 동일하게 분할 정복 방법을 통해 구현한다.</p>
 
 <p><br /></p>
 
 <h3 id="개념"><span style="color:hsl(350, 100%, 66%);">개념</span></h3>
-<p><a href="https://laagom.github.io/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html"><code class="highlighter-rouge">선택정렬</code></a>,<a href="https://laagom.github.io/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html"><code class="highlighter-rouge">거품정렬</code></a>과 더불어 시간복잡도를 O(N^2)가지고 있는 삽입정렬에 대해 알아보려고 한다. 시간 복잡도가 O(N^2)을 가지고 있다고 하지만 <code class="highlighter-rouge">선택정렬</code>, <code class="highlighter-rouge">삽입정렬</code>보다 좀 더 효율적인 알고리즘이다. 최선의 경우에는 O(N)이라는 엄청나게 빠른 효율성을 가지고 있어 <code class="highlighter-rouge">다른 정렬 알고리즘의 일부로 사용될 만큼 좋은 정렬 알고리즘</code>이다.</p>
+<p>퀵 정렬과 마찬가지로 빠른 정렬로 분류되며 많이 사용되고 언급되는 정렬 방식이다. 퀵 정렬과는 반대로 <code class="highlighter-rouge">안정 정렬</code>에 속한다. 병합 정렬은 <code class="highlighter-rouge">분할 정복(Divide and Conquer) 기법</code>과 <code class="highlighter-rouge">재귀 알고리즘</code>을 이용해서 정렬하는 알고리즘이다.</p>
 
-<p>삽입 정렬은 정렬 범위를 1칸씩 확장해나가면서 새롭게 정렬 범위에 들어온 값을 기존 값들과 비교하여 알맞은 자리에 넣어주는 알고리즘이다. 좀더 자세하게 말하면 2번째 원소부터 시작하여 그 앞(왼쪽)의 원소들과 비교하여 삽입할 위치를 지정한 후 원소를 뒤로 옮기고 지정된 자리에 자료를 삽입하여 정렬하는 구조를 가지고 있다.</p>
+<p>주어진 배열을 원소가 하나 밖에 남지 않을 때까지 쪼갠 후 다시 크기 순으로 재배열 하면서 원래 크기의 배열로 합친다.</p>
 
-<p>이제 하나의 배열을 가지고 위에서 설명한 <code class="highlighter-rouge">삽입 정렬</code>이 어떻게 진행되는지 알아보자.</p>
+<p>이제 하나의 배열을 가지고 위에서 설명한 <code class="highlighter-rouge">병합 정렬</code>이 어떻게 진행되는지 알아보자.</p>
 
-<p>예를 들어, 다음과 같이 1부터 5까지 총 5개의 숫자가 들어있는 배열에 있다고 가정해보자.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 1, 5, 4, 3]
+<p>예를 들어, 다음과 같이 <code class="highlighter-rouge">1</code>부터 <code class="highlighter-rouge">8</code>까지 총8개의 숫자가 들어있는 배열에 있다고 가정해보자.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[6, 5, 3, 1, 8, 7, 2, 4]
 </code></pre></div></div>
-<p>맨 처음에는 첫번째 2개의 값만 정렬 범위에 포함을 시키고, 앞에 있는 값 <code class="highlighter-rouge">2</code>가 뒤에 있는 값 <code class="highlighter-rouge">1</code>보다 크기 대문에 서로의 자리를 바꿔준다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[2, 1] : 2 &gt; 1 =&gt; switch
+<p>위의 배열을 반토막 내며 반복해서 쪼개주자.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[6, 5, 3, 1] [8, 7, 2, 4]
 
-[1, 2] 
+[6, 5] [3, 1] [8, 7] [2, 4]
+
+[6] [5] [3] [1] [8] [7] [2] [4]
 </code></pre></div></div>
-<p>그 다음에는 기존의 정렬 범위에 한칸 확장하여 세번째 값을 추가하고, 기존 정렬 범위에서 가장 큰 값인 <code class="highlighter-rouge">2</code>와 새롭게 추가된 <code class="highlighter-rouge">5</code>를 비교하면 자리를 바꿀 필요가 없다는 것을 알 수 있다. 기존에 정렬 범위에 있던 두 개의 값은 이 전 패스에서 이미 정렬이 되어 있기 때문에 굳이 <code class="highlighter-rouge">1</code>, <code class="highlighter-rouge">5</code>를 비교할 필요가 없다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 5] : 2 &lt; 5 =&gt; OK
 
-[1, 2, 5]
+<p>이렇게 반토막 내며 쪼개면 결과적으로 배열이 가진 원소 수 만큼 배열이 나눠진다. 이렇게 더 이상 쪼갤 수 없을때가 되면 두 개씩 병합을 시작할 것이다. 합칠 때는 작은 숫자가 앞에, 큰 숫자가 뒤에 위치시킨다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[5, 6] [1, 3] [7, 8] [2, 4] 
 </code></pre></div></div>
-<p>다음 패스에서는 정렬 범위를 한 칸 더 확장하여 4번째 값을 추가시키고, 기존 정렬 범위에서 가장 큰 값인 <code class="highlighter-rouge">5</code>와 새롭게 추가된 <code class="highlighter-rouge">4</code>를 비교하면, 앞의 값이 뒤에 있는 값보다 크기 때문에 서로의 자리를 바꿔준다. 이제 기존 정렬 범위에서 두번째로 큰 값인 <code class="highlighter-rouge">2</code>와 방금 자리를 교체 당한 <code class="highlighter-rouge">4</code>를 비교해보면 더 이상 자리를 바꿀 필요가 없다는 것을 알 수 있다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 5, 4] : 5 &gt; 4 =&gt; switch
+<p>이제 4개의 배열을 2개로 합친다. 각 배열 내에서 가장 작은 값 2개를 비교해서 더 작은 값을 먼저 선택하면 자연스럽게 크기 순으로 선택이 된다.</p>
 
-[1, 2, 4, 5] : 2 &lt; 4 =&gt; OK
-
-[1, 2, 4, 5]
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 3, 5, 6] [2, 4, 7, 8]
 </code></pre></div></div>
-<p>마지막 패스에서는 정렬 범위를 전체로 확장하여 마지막까지 포함시키고, 지금까지 했던 방식과 동일하게 새로 추가된 값과 기존에 있던 값들을 비교하며 2번의 자리 교체가 필요한 것을 알 수 있다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 4, 5, 3] : 5 &gt; 3 =&gt; switch
+<p>최종적으로 2개의 배열도 마찬가지로 크기 순으로 선택해가면서 하나로 합치면 정렬된 배열을 얻을 수 있다.</p>
 
-[1, 2, 4, 3, 5] : 4 &gt; 3 =&gt; switch
-
-[1, 2, 3, 4, 5] : 2 &lt; 3 =&gt; OK
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 4, 5, 6, 7, 8]
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="gif로-이해하는-insertion-sort"><span style="color:hsl(350, 100%, 66%);">GIF로 이해하는 Insertion Sort</span></h3>
+<h3 id="gif로-이해하는-merge-sort"><span style="color:hsl(350, 100%, 66%);">GIF로 이해하는 Merge Sort</span></h3>
 
-<p><img src="/assets/resources/insertion-sort-001.gif" /></p>
+<p><img src="/assets/resources/merge-sort-001.gif" /></p>
 
 <p><br /></p>
 
 <h3 id="특징"><span style="color:hsl(350, 100%, 66%);">특징</span></h3>
 <ol>
-  <li>선택/거품 정렬은 패스가 거듭될 수록 탐색 범위가 줄어드는 반면 삽입 정렬은 오히려 점점 정렬 범위가 넓어진다.</li>
-  <li>큰 그림에서 보았을 때 바깥 쪽 루프는 순방향, 안 쪽 루프는 역방향으로 진행하고 있다.</li>
-</ol>
-
-<p><br /></p>
-
-<h3 id="복잡도"><span style="color:hsl(350, 100%, 66%);">복잡도</span></h3>
-<ol>
-  <li>삽입 정렬은 별도의 추가 공간을 사용하지 않고 주어진 배열이 차지하고 있는 공간 내에서 값들의 위치만 바꾸기 때문에 O(1)의 공간 복잡도를 가진다.</li>
-  <li>시간 복잡도는 우선 루프문을 통해 정렬 범위를 2개로 시작해서 전체로 확장해야 하기 때문에 기본적으로 O(N)의 시간 소모를 하며, 각 패스에서 정렬 범위에 새롭게 추가된 값과 기존 값들의 대소 비교 및 자리 교대를 위해 O(N)의 시간이 필요하다. 따라서 삽입 정렬은 총(N^2)의 시간 복잡도를 가지는 정렬 알고리즘이다.</li>
-  <li>최적화를 통해 부분적으로 정렬된 배열에 대해 성능을 대폭 개선할 수 있으며, 특히 완전히 정렬되어 있는 배열이 들어오는 경우 O(N)까지도 시간 복잡도를 향상시킬 수 있다.</li>
+  <li>알고리즘을 큰 그림에서 보면 분할(split) 단계와 병합(merge) 단계로 나눌 수 있으며, 단순히 중간 인덱스를 찾아야하는 분할 비용보다 모든 값들을 비교해야하는 병합 비용이 더 크다.</li>
+  <li>예제에서 보이는 것과 같이 8-&gt;4-&gt;2-&gt;1 식으로 전반적인 반복의 수는 점점 절반으로 줄어들기 때문에 O(logN)시간이 필요하며, 각 패스에서 병합할 때 모든 값들을 비교해야 하므로 O(N) 시간이 소모된다. 따라서 총 시간 복잡도는 O(NlogN)이다.</li>
+  <li>두 개의 배열을 병합 할 때 병합 결과를 담아 놓을 배열이 추가로 필요하다. 따라서 공간 복잡도는 O(N)이다.</li>
+  <li>다른 정렬 알고리즘과 달리 인접한 값들 간에 상호 자리 교대가 일어나지 않는다.</li>
 </ol>
 
 <p><br /></p>
 
 <h3 id="python-코드"><span style="color:hsl(350, 100%, 66%);">Python 코드</span></h3>
-<p>두 개의 반복문이 필요하며, 내부 반복문에서는 정렬 범위에 새롭게 추가된 값과 기존 값들을 뒤에서 부터 비교해가며 앞의 값이 뒤의 값보다 큰 경우 바꿔주며, 외부 반복문을 정렬 범위 2~N까지 확대해 나간다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<p>재귀를 이용해서 병합 정렬을 구현할 수 있다. 먼저 배열을 더 이상 나눌 수 없을 때 까지(원소가 하나만 남을 때까지) 최대한 분할 후에, 다시 병합하면서 점점 큰 배열을 만들어 나가면 된다. 따라서 이 재귀 알고리즘의 기본 사례는 입력 배열의 크기가 2보다 작을 때이며 이 존건에 해당할 때는 배열을 그대로 반환하면 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arry</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arry</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arry</span>
+    
+    <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arry</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">low_arry</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">arry</span><span class="p">[:</span><span class="n">mid</span><span class="p">])</span>
+    <span class="n">high_arry</span> <span class="o">=</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">arry</span><span class="p">[</span><span class="n">mid</span><span class="p">:])</span>
 
-<span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">merged_arry</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">low_arry</span><span class="p">)</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">high_arry</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">low_arry</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">high_arry</span><span class="p">[</span><span class="n">h</span><span class="p">]:</span>
+            <span class="n">merged_arry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">low_arry</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+            <span class="n">l</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">merged_arry</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">high_arry</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+            <span class="n">h</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">merged_arry</span> <span class="o">+=</span> <span class="n">low_arry</span><span class="p">[</span><span class="n">l</span><span class="p">:]</span>
+    <span class="n">merged_arry</span> <span class="o">+=</span> <span class="n">high_arry</span><span class="p">[</span><span class="n">h</span><span class="p">:]</span>
 
-<span class="s">'''
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
-'''</span>
+    <span class="k">return</span> <span class="n">merged_arry</span>
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
 </code></pre></div></div>
+<p>위와 같이 Python의 리스트 slice notation(arr[start:end])을 사용하면 다음과 같이 간결한 코드를 작성할 수 있다. 하지만, <code class="highlighter-rouge">리스트 slice를 할 때 배열의 복제가 일어나므로 메모리 사용 효율은 좋지 않다.</code></p>
 
 <p><br /></p>
 
 <h3 id="최적화"><span style="color:hsl(350, 100%, 66%);">최적화</span></h3>
-<p>기존에 있던 값들은 이전 패스에서 모두 정렬되었다는 점을 활용하면 <code class="highlighter-rouge">불필요한 비교 작업을 제거</code>할 수 있다. 예를 들면, 아래와 같이 기존 정렬 범위 <code class="highlighter-rouge">[1, 2, 3, 5]</code>에 <code class="highlighter-rouge">4</code>가 새롭게 추가된다면, <code class="highlighter-rouge">5</code>는 <code class="highlighter-rouge">4</code>보다 크기 때문에 switch가 필요하지만, <code class="highlighter-rouge">3</code>은 <code class="highlighter-rouge">4</code>보다 작기 때문에 switch는 필요가 없다. 그리고 <code class="highlighter-rouge">3</code>보다 앞에 있는 숫자들은 기존 패스에서 이미 정렬을 해놓았기 때문에 당연히 3보다는 작을 것이며, 더 이상의 <code class="highlighter-rouge">4</code>와 대소 비교는 무의미하다. 이 사실을 이용하면, 새롭게 추가되는 값보다 작은 숫자를 만나는 최초의 순간만 내무 반복문을 수행해도 된다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 5, 4, ...] 5 &gt; 4 =&gt; switch
+<p>병합 결과를 담을 새로운 배열을 매번 생성해서 리턴하지 않고, 인덱스 접근을 이용해 입력 배열을 계속해서 업데이트하면 메모리 사용량을 대폭 줄일 수 있다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">arry</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span>
+        
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+        <span class="n">sort</span><span class="p">(</span><span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+        <span class="n">merge</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
 
-[1, 2, 3, 4, 5, ...] 3 &lt; 4 =&gt; OK
-</code></pre></div></div>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">low</span><span class="p">,</span> <span class="n">mid</span>
 
-<span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">end</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">mid</span> <span class="ow">and</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">arry</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arry</span><span class="p">[</span><span class="n">h</span><span class="p">]:</span>
+                <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+                <span class="n">l</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+                <span class="n">h</span> <span class="o">+=</span> <span class="mi">1</span>
 
+        <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">mid</span><span class="p">:</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">l</span><span class="p">])</span>
+            <span class="n">l</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">h</span> <span class="o">&lt;</span> <span class="n">high</span><span class="p">:</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+            <span class="n">h</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+            <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">low</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">arry</span><span class="p">))</span>
+
+
+<span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
 </code></pre></div></div>
-<p>이 최적화를 적용하면, 정렬된 배열이 들어올 경우, O(N)의 시간 복잡도를 달성할 수 있다. 예를 들어, 다음과 같이 5개의 숫자가 배열이 들어오면 각 패스 당 단 한 번 총 4번의 비교만으로 해당 배열이 완전히 정렬되었음을 알아내고 삽입 정렬을 완료할 수 있다.</p>
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2] : 1 &lt; 2 =&gt; OK
-
-[1, 2, 3] : 2 &lt; 3 =&gt; OK
-
-[1, 2, 3, 4] : 3 &lt; 4 =&gt; OK
-
-[1, 2, 3, 4, 5] : 4 &lt; 5 =&gt; OK
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h3 id="최적화2"><span style="color:hsl(350, 100%, 66%);">최적화2</span></h3>
-<p>switch작업 없이 단순히 값들을 옮기는 것만으로 삽입 정렬을 구현할 수 있다. 앞의 값 정렬 범위에 추가시칸 값보다 큰 경우 값을 뒤로 밀다가 최초로 작은 값을 만나는 순간 그 뒤에 추가된 값을 꼽으면 된다.</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
-    <span class="n">to_insert</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">end</span><span class="p">]</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">end</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">to_insert</span><span class="p">:</span>
-        <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_insert</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-</code></pre></div></div>
-
-<h3 id="결론"><span style="color:hsl(350, 100%, 66%);">결론</span></h3>
-<p>삽입 정렬에서 코드를 최적화 하는 방법은 loop를 돌면서 사전에 정렬이 완료된 과정이 존재하면 그 이후 발생하는 불필요한 탐색(비교)를 없애면 좀 더 효율 적으로 사용할 수 있다는 것이다.</p>
 
       <br/>
       <!-- 블로그-하단-반응형 
@@ -403,12 +400,12 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
   <div class="share">
       <h2>Share this post</h2>
       <div class="share-body">
-        <a href="http://twitter.com/share?text=[Algorithm] 삽입 정렬 (Insertion Sort)&amp;url=http://localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html"
+        <a href="http://twitter.com/share?text=[Algorithm] 병합 정렬 (Merge Sort)&amp;url=http://localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
             <span class="icon-twitter">
             </span>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/03/05/%EC%82%BD%EC%9E%85-%EC%A0%95%EB%A0%AC(Insertion-Sort).html"
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/03/07/%EB%B3%91%ED%95%A9-%EC%A0%95%EB%A0%AC(Merge-Sort).html"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
             <span class="icon-facebook">
             </span>
@@ -462,12 +459,10 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
   <div class="page-control">
 	<div>
 		
-		<a id="prev" class="button" href="/study/2023/03/03/Web-Framework.html">&laquo; 이전 글</a>
+		<a id="prev" class="button" href="/study/2023/03/05/%ED%80%B5-%EC%A0%95%EB%A0%AC(Quick-Sort).html">&laquo; 이전 글</a>
 		
 	</div>
 	<div>
-		
-		<a id="next" class="button" href="/study/2023/03/05/%ED%80%B5-%EC%A0%95%EB%A0%AC(Quick-Sort).html">다음 글 &raquo;</a>
 		
 	</div>
 </div>
@@ -477,6 +472,9 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
       
       
         
+          
+          
+        
         
           
 
@@ -492,9 +490,6 @@ on <a href="/tag/study-algorithm/" data-flip="title">Algorithm</a>
 
         
       
-        
-          
-          
         
         
           
