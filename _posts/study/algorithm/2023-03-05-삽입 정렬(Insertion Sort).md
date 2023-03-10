@@ -11,9 +11,6 @@ image: /assets/img/lagom.png
 ---
 
 # 삽입 정렬(Insertion Sort)
-정렬 알고리즘 중에서 가장 직관적이고 쉽게 구현이 가능한 선택 정렬(Selection Sort)에 대해 알아보려고 한다.
-
-<br>
 
 ### <span style='color:hsl(350, 100%, 66%);'>개념</span>
 [`선택정렬`](https://laagom.github.io/study/2023/02/02/%EC%84%A0%ED%83%9D-%EC%A0%95%EB%A0%AC(Selection-Sort).html),[`거품정렬`](https://laagom.github.io/study/2023/01/25/%EA%B1%B0%ED%92%88-%EC%A0%95%EB%A0%AC(Bubble-Sort).html)과 더불어 시간복잡도를 O(N^2)가지고 있는 삽입정렬에 대해 알아보려고 한다. 시간 복잡도가 O(N^2)을 가지고 있다고 하지만 `선택정렬`, `삽입정렬`보다 좀 더 효율적인 알고리즘이다. 최선의 경우에는 O(N)이라는 엄청나게 빠른 효율성을 가지고 있어 `다른 정렬 알고리즘의 일부로 사용될 만큼 좋은 정렬 알고리즘`이다.
