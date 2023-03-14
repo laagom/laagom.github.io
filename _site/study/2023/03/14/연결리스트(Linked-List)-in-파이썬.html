@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+ __  __                __                                     __
+/\ \/\ \              /\ \             __                    /\ \
+\ \ \_\ \   __  __    \_\ \      __   /\_\      __       ___ \ \ \/'\
+ \ \  _  \ /\ \/\ \   /'_` \   /'__`\ \/\ \   /'__`\    /'___\\ \ , <
+  \ \ \ \ \\ \ \_\ \ /\ \L\ \ /\  __/  \ \ \ /\ \L\.\_ /\ \__/ \ \ \\`\
+   \ \_\ \_\\/`____ \\ \___,_\\ \____\ _\ \ \\ \__/.\_\\ \____\ \ \_\ \_\
+    \/_/\/_/ `/___/> \\/__,_ / \/____//\ \_\ \\/__/\/_/ \/____/  \/_/\/_/
+                /\___/                \ \____/
+                \/__/                  \/___/
+
+Powered by Hydejack v6.4.0 (https://qwtel.com/hydejack/)
+-->
+
+
+
+
+
+
+
+
+
+<head>
+  <!-- =============== -->
+<!-- META            -->
+<!-- =============== -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta property="og:title" content="[Language] 연결리스트(Linked List) in Python">
+<meta property="og:type" content="article">
+
+
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/img/logo.png">
+
+
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="360" />
+
+
+
+  <title>[Language] 연결리스트(Linked List) in Python &middot; 라곰(Lagom)</title>
+
+
+
+<meta name="description" content="연결 리스트(Linked List) in Python
+연결 리스트(Linked List)는 (데이터와 다음 노드의 주소를 담고 있는)노드들이 한 줄로 연결되어 있는 방식의 자료구조이다.
+
+">
+<meta property="og:description" content="연결 리스트(Linked List) in Python
+연결 리스트(Linked List)는 (데이터와 다음 노드의 주소를 담고 있는)노드들이 한 줄로 연결되어 있는 방식의 자료구조이다.
+
+">
+
+
+
+ <!-- tipuesearch -->
+ <link rel="stylesheet" href="/assets/tipuesearch/css/tipuesearch.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch_content.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch_set.js"></script>
+ <script src="/assets/tipuesearch/tipuesearch.min.js"></script>
+
+<!-- =============== -->
+<!-- LINKS           -->
+<!-- =============== -->
+<link rel="canonical" href="http://localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html">
+<meta property="og:url" content="http://localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html">
+
+<link rel="alternate" type="application/atom+xml" title="라곰(Lagom) Feed" href="http://localhost:4000/feed.xml">
+
+
+  <link rel="prev" href="http://localhost:4000/study/2023/03/10/Array-VS-ArrayList-VSLinkedList.html">
+
+
+
+
+<link rel="apple-touch-icon" href="http://localhost:4000/apple-touch-icon.png">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+<script>
+  !function(n,e){function t(n,e){n.onload=function(){this.onerror=this.onload=null,e(null,n)},n.onerror=function(){this.onerror=this.onload=null,e(new Error("Failed to load "+this.src),n)}}function o(n,e){n.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,e(null,n))}}n._loaded=!1,n.loadJSDeferred=function(a,d){function r(){n._loaded=!0;var r=e.createElement("script");r.src=a,d&&(("onload"in r?t:o)(r,d),r.onload||t(r,d));var l=e.getElementsByTagName("script")[0];l.parentNode.insertBefore(r,l)}n._loaded?r():n.addEventListener?n.addEventListener("load",r,!1):n.attachEvent?n.attachEvent("onload",r):n.onload=r}}(window,document);
+
+  !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+
+  !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);
+
+  window.disablePushState = false;
+  window.disableDrawer = false;
+</script>
+
+<!--[if lt IE 9]>
+<script src="https://unpkg.com/html5shiv/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+<!-- =============== -->
+<!-- STYLES          -->
+<!-- =============== -->
+<!--[if gt IE 8]><!---->
+<style>
+  
+  article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}*{box-sizing:border-box}html,body{margin:0;padding:0}html{font-size:16px;line-height:1.75}body{color:#333;background-color:#fff;overflow-y:scroll}a{text-decoration:none}.lead{margin-left:-1rem;margin-right:-1rem}img,.img{display:block;max-width:100%;margin-bottom:1rem;border:none}img.lead,.img.lead{max-width:calc(100% + 2rem);width:calc(100% + 2rem)}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-weight:bold;text-rendering:optimizeLegibility}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{margin:1.6rem 0 1rem;line-height:1.6}h1,.h1{font-size:2rem;line-height:1.25}h2,.h2{font-size:1.5rem}h3,.h3{font-size:1.17em}p{margin-top:0;margin-bottom:1rem}p.lead{font-size:1.25rem;font-weight:300;padding:0 1rem}ul,ol,dl{margin-top:0;margin-bottom:1rem}ul,ol{padding-left:1.25rem}hr{position:relative;margin:1.5rem 0;border:0;border-top:1px solid #eee}.hr{padding-bottom:.5rem;border-bottom:1px solid #eee;margin-bottom:1.5rem}h4,h5,h6,.h4,.h5,.h6{margin-bottom:0.5rem;font-size:1rem}table{margin-bottom:1rem;width:100%;width:calc(100% + 2rem);margin-left:-1rem;border:1px solid #e5e5e5;border-collapse:collapse;border-spacing:0}td,th{padding:.25rem .5rem;border:1px solid #e5e5e5}td:first-child,th:first-child{padding-left:1rem}td:last-child,th:last-child{padding-right:1rem}thead+tbody,tbody+tbody,tfoot{border-top:3px double #e5e5e5}tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}footer{margin-bottom:2rem}.page,.post{margin-bottom:3em}.page li+li,.post li+li{margin-top:.25rem}.page>header,.post>header{margin-bottom:2rem}.page-title,.post-title{margin-top:0}.post-date{display:block;margin-top:-0.5rem;margin-bottom:1rem;color:#9a9a9a}.related-posts{padding-left:0;list-style:none}.related-posts>li,.related-posts>li+li{margin-top:1rem}.related-posts>li>small,.related-posts>li+li>small{font-size:75%;color:#9a9a9a}.message{margin-bottom:1rem;padding:1rem;color:#787878;background-color:#f9f9f9;margin-left:-1rem;margin-right:-1rem}body,main{position:relative;overflow-x:hidden}@media screen{body::before{content:'';background:#e5e5e5;position:absolute;left:0;top:0;bottom:0}}@media screen and (min-width: 40em){html{font-size:17px}}@media screen and (min-width: 54em){html{font-size:16px}}@media screen and (min-width: 88em){html{font-size:17px}}@media screen and (min-width: 125em){html{font-size:18px}}.sr-only{display:none}.clearfix,.sidebar-social::after,.clearafter::after{content:"";display:table;clear:both}a,.a{position:relative;padding-bottom:.15rem;border-style:hidden}.img{overflow:hidden;background-color:#f9f9f9}.img>img{margin:0;width:100%;height:100%}.sixteen-nine{position:relative}.sixteen-nine::before{display:block;content:"";width:100%;padding-top:56.25%}.sixteen-nine>*{position:absolute;top:0;left:0;right:0;bottom:0}h1+hr,h2+hr,h3+hr,h4+hr,h5+hr,h6+hr{margin-top:0}.fade-in{animation-duration:500ms;animation-name:fade-in;animation-fill-mode:forwards}@keyframes fade-in{from{transform:translateY(-2rem);opacity:0}50%{transform:translateY(-2rem);opacity:0}to{transform:translateY(0);opacity:1}}.mb6{margin-bottom:10rem}.sidebar{color:rgba(255,255,255,0.75);text-align:left}.sidebar::before{content:"";position:absolute;z-index:2;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom, rgba(32,32,32,0) 0%, rgba(32,32,32,0.5) 100%)}.sidebar a{color:#fff;border-bottom-color:rgba(255,255,255,0.2)}.right-side{width:100%;margin-left:auto;margin-right:auto}.right-side .ad-first{text-align:center}@media screen{.right-side{max-width:38rem;min-height:100vh}.right-side .ad-second{display:none}}@media screen and (min-width: 54em){.right-side{margin-left:20rem;margin-right:1rem;padding:4rem 1rem 12rem}.right-side .ad-second{text-align:center;display:block}}@media screen and (min-width: 72em){.right-side{margin-left:22rem;max-width:42rem}}@media screen and (min-width: 88em){.right-side{width:162px;margin-left:0rem;margin-right:0rem;padding:0rem;margin-top:10rem;display:block;float:left}}@media screen and (min-width: 96em){.right-side{width:300px;margin-right:0rem}}#_yDrawer{position:relative}@media screen{#_yDrawer{min-height:640px;min-height:100vh}}@media screen and (min-width: 54em){#_yDrawer{width:18rem;margin-left:0}}.sidebar-bg{position:absolute;height:100%;overflow:hidden;top:0;right:0;bottom:0;left:0;background:#202020 center / cover}.sidebar-box{display:flex;justify-content:center}.sidebar-sticky{position:relative;z-index:3}@media screen{.sidebar-sticky{-ms-overflow-style:none;overflow:-moz-scrollbars-none;height:100%;overflow:auto;position:absolute;padding:3rem 0rem;right:2.5rem;left:2.5rem}}.sidebar-sticky::-webkit-scrollbar{display:none}.sidebar-about>h1{color:#fff;font-size:2rem}.sidebar-nav>ul{list-style:none;padding-left:0;margin-bottom:.5rem}a.sidebar-nav-item{width:100%;font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2)}a.sidebar-nav-subitem{font-weight:normal;display:block;line-height:1.75;padding:.25rem 0;border-bottom:1px solid rgba(255,255,255,0.2);margin-left:45px;color:#939393}@media screen{.y-drawer-scrim{z-index:2}.y-drawer-content{width:18rem;left:-18rem;z-index:3}}.sidebar-social{margin-bottom:.5rem}.sidebar-social>ul{list-style:none;padding-left:0;margin:0 -.25rem}.sidebar-social>ul>li{float:left}.sidebar-social>ul>li>a{display:inline-block;text-align:center;font-size:1.6rem;line-height:3rem;width:3.1249rem;height:4rem;padding:.5rem 0}.sidebar-social>ul li+li{margin-top:0}.fixed-top{position:fixed;top:0;left:0;width:100%;z-index:1}.navbar>.content{padding-top:0;padding-bottom:0;min-height:0;height:0}.menu{display:inline-block;padding:1.75rem 1.5rem;border-bottom:none;margin-left:-1.5rem;color:#9a9a9a !important}.menu::after{content:"\2630"}@media screen and (min-width: 54em){.menu{padding:1.25rem 1.5rem;position:absolute;left:-9999px}.menu:focus{position:static}}.animation-main{pointer-events:none}.loading{display:none}@media print{.menu{display:none}}.animation-main{opacity:0;will-change:opacity}.loading{position:absolute;top:0;right:0;padding:5.25rem 4.5rem;transform-origin:top right;transform:scale(0.33)}.content{position:relative;margin-left:auto;margin-right:auto;padding:5rem 1rem 12rem}@media screen{.content{min-height:100vh}}@media screen and (min-width: 54em){.content{padding:4rem 1rem 12rem;margin-left:19rem;margin-right:3rem}}@media screen and (min-width: 72em){.content{max-width:42rem;margin-left:21rem}}@media screen and (min-width: 88em){.content{float:left;width:100%;margin-left:22rem;margin-right:5rem}}@media screen and (min-width: 96em){.content{max-width:44rem}}@media screen and (min-width: 102em){.content{margin-left:25rem;margin-right:8rem}}.me{width:6.5rem;height:6.5rem;align-self:center;margin-right:20px;border-radius:100%;position:relative}@media screen and (min-width: 40em){.me{width:7rem;height:7rem}}@media screen and (min-width: 54em){.me{width:6.5rem;height:6.5rem}}@media screen and (min-width: 72em){.me{width:7rem;height:7rem}}main>footer{width:100%;position:absolute;bottom:0;left:0;right:0;padding:0 1rem;color:#9a9a9a;font-size:smaller;text-align:center}main>footer>p{margin-bottom:0}html{font-family:'Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'}h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.heading{font-family:'Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'}
+
+</style>
+
+
+<link rel="preload" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0" as="style" onload="this.rel='stylesheet'">
+
+<style id="_pageStyle">
+
+.content a{color:#4f86aa;border-color:rgba(79,134,170,0.2)}.content a:hover{border-color:#4f86aa}:focus{outline-color:#4f86aa}::selection{color:#fff;background:#4f86aa}::-moz-selection{color:#fff;background:#4f86aa}
+
+</style>
+
+
+<noscript>
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/hydejack.css?v=6.4.0">
+  
+  
+  
+
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <style>
+      html { font-family: 'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif' }
+      h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .heading { font-family: 'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif' }
+    </style>
+  
+
+  
+  <link rel="stylesheet" href="http://localhost:4000/assets/icomoon/style.css">
+</noscript>
+<!--<![endif]-->
+
+<br>
+  <form action="/search" class="tipue_search_wrapper">
+    <div class="tipue_search_left">
+      <img src="/assets/tipuesearch/search.png" class="tipue_search_icon">
+    </div>
+    <div class="tipue_search_right">
+      <input type="text" name="q" id="tipue_search_input" pattern=".{1,}" title="At least 1 characters" required></div>
+      <div style="clear: both;"></div>
+    </form>
+</head>
+
+<body>
+  <!-- =============== -->
+<!-- MENU            -->
+<!-- =============== -->
+<div class="navbar fixed-top">
+  <div class="content">
+    <span class="sr-only">Jump to:</span>
+    <a id="_menu" class="menu no-hover" href="#_title">
+      <span class="sr-only">Menu</span>
+    </a>
+  </div>
+</div>
+
+<!-- =============== -->
+<!-- CONTENT         -->
+<!-- =============== -->
+<div id="_yPushState">
+  <div class="fade-in">
+    <main id="_main" class="content" role="main" data-color="#4f86aa" data-image="/assets/img/lagom.png">
+      
+
+<article id="post-study/2023/03/14/연결리스트(Linked List) in 파이썬" class="post" role="article">
+  <header>
+
+    <h1 class="post-title">
+      
+        [Language] 연결리스트(Linked List) in Python
+      
+    </h1>
+
+    <p class="post-date heading">
+      <time datetime="2023-03-14T00:00:00+09:00">14 Mar 2023</time>
+      
+
+
+
+
+
+
+
+
+
+in <a href="/category/study/" data-flip="title">Study</a>
+
+      
+
+
+
+
+
+
+
+
+
+on <a href="/tag/study-python/" data-flip="title">Python</a>
+
+    </p>ß
+
+    
+  <div class="hr" style="padding-bottom:0"></div>
+
+
+  </header>
+  
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+    <div class="markdown-body">
+
+      <div style="text-align:right; text-align: center">
+        <a href="https://hits.seeyoufarm.com/localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html"
+          target="_blank">
+          <img
+          src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=.&edge_flat=false"/>
+        </a>
+      </div>
+
+
+
+<style>
+.googleads { display:block; width:98%; height: 280px; }
+@media(min-width: 600px) { .googleads { display: none; } }
+</style>
+<!--구글 에드센스
+<ins class="adsbygoogle myAd1190"
+    data-ad-client="ca-pub-1200017190012992"
+></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br/>
+-->
+      <!--게시물 내용-->
+      <h1 id="연결-리스트linked-list-in-python">연결 리스트(Linked List) in Python</h1>
+<p>연결 리스트(Linked List)는 <code class="highlighter-rouge">(데이터와 다음 노드의 주소를 담고 있는)노드</code>들이 한 줄로 연결되어 있는 방식의 자료구조이다.</p>
+
+<p><img src="/assets/resources/linked%20list_node-001.jpeg" alt="Alt text" />
+연결되는 방향에 따라 <code class="highlighter-rouge">단일 연결 리스트(Singly Linked List)</code>, <code class="highlighter-rouge">이중 연결 리스트(Doubly Linked List)</code>, <code class="highlighter-rouge">환형 연결 리스트(Circular Linked List)</code> 세 가지가 존재한다.</p>
+
+<p><br /></p>
+
+<h2 id="연결-리스트linked-list란">연결 리스트(Linked list)란?</h2>
+<p>연결 리스트(Linked List)는 데이터를 노드의 형태로 저장한다. 노드에는 <code class="highlighter-rouge">데이터(값)</code>와 <code class="highlighter-rouge">다음 노드를 가르키는 포인터</code>를 담은 구조로 이루어져 있다.</p>
+
+<p><img src="/assets/resources/linked%20list_node-002.jpeg" alt="Alt text" /></p>
+
+<p>연결 리스트(Linked List는 Array)는 배열(Array) 처럼 <code class="highlighter-rouge">선형 데이터 자료구조</code>이지만, 배열(Array)는 물리적인 배치 구조 자체가 연속적으로 저장되어 있고 Linked list는 위의 노드의 Next부분에 다음 노드의 위치를 저장함으로써 선형적인 데이터 자료구조를 가진다.</p>
+
+<p>Python 내장 함수의 시간 복잡도에서 List의 삽입과 삭제의 시간 복잡도가 O(N)이 걸리는 것은 배열이 물리적인 데이터의 저장 위치가 연속적이어야 하므로 데이터를 옮기는 연산작업이 필요하기 때문이다.
+<br />
+** 참고 : 배열(Array)의 삽입과 삭제는 O(1)의 시간복잡도를 가진다. 하지만 해당 인덱스를 찾아야하는 경우 검색의 시간 복잡도인 O(N)에 해당한다.</p>
+
+<p>하지만 Linked List는 데이터를 삽입, 삭제할 경우, 노드의 Next 부분에 저장한 다음 노드의 포인터만 변경해주면 되므로 배열과 비교하였을 때 Linked List가 <code class="highlighter-rouge">효율적으로</code> 데이터를 <code class="highlighter-rouge">삽입</code>, <code class="highlighter-rouge">삭제</code> 할 수 있다.</p>
+
+<p>그러나 안타깝게도 이러한 Linked List에서 특정 위치의 데이터를 탐색하기 위해서는 첫 노드부터 탐색을 시작해야한다. 그 시간이 O(N)만큼 걸리게 되므로 탐색에 있어서는 배열이나 트리 구조에 비해 상대적으로 느리다고 할 수 있다.</p>
+
+<p><br /></p>
+
+<h3 id="linked-list의-장점">Linked List의 장점</h3>
+<ul>
+  <li>Linked List의 길이를 동적으로 조절 가능</li>
+  <li>데이터의 삽입과 삭제가 쉬움</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="linked-list의-단점">Linked List의 단점</h3>
+<ul>
+  <li>임의의 노드에 바로 접근할 수가 없음</li>
+  <li>다음 노드의 위치를 저장하기 위한 추가 공간이 필요함</li>
+  <li>Cache loclity를 활용해 근접 데이터를 사전에 캐시에 저장하기가 어려움</li>
+  <li>Linked List를 거꾸로 탐색하기 어려움
+<br />
+** cache locality : <code class="highlighter-rouge">대부분 프로그램은 한번 사용한 데이터를 다시 사용할 가능성이 높고, 그 주변의 데이터도 곧 사용할 가능성이 높은 데이터 지역성</code>을 가지고 있다. 데이터 지역성을 활용하여 메인 메모리에 있는 데이터를 캐시 메모리에 불러와 두고, CPU가 필요한 데이터를 캐시에서 먼저 찾도록 하면 시스템 성능을 향상시킬 수 있다.</li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="단일-연결-리스트singly-linked-list-구현하기">단일 연결 리스트(Singly Linked List) 구현하기</h2>
+<p>단일 연결 리스트는 각 노드에 자료 공간과 한 개의 포인터 공간(다음 노드의 주소를 담는 공간)이 있고, 각 노드의 포인터는 다음 노드를 가리킨다.</p>
+
+<h3 id="-삽입"># 삽입</h3>
+
+<p><img src="/assets/resources/linked%20list_node_insertion-001.png" alt="Alt text" /></p>
+
+<h3 id="-삭제"># 삭제</h3>
+
+<p><img src="/assets/resources/linked%20list_node_delete-001.png" alt="Alt text" /></p>
+
+<h3 id="-코드"># 코드</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Node 클래스 선언
+</span><span class="k">class</span> <span class="nc">Node</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># 데이터만 인자로 전달 받고 Node 생성 시, next주소를 저장하지 않음
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+
+
+<span class="c1"># Singly Linked List 선언
+</span><span class="k">class</span> <span class="nc">SinglyLinkedList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 연결 리스트 끝에 새 Node 추가
+</span>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="c1"># Node 형태가 들어오지 않았을 경우 예외 처리
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+                <span class="k">raise</span>
+        <span class="k">except</span> <span class="nb">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"Type Error! {e}"</span><span class="p">)</span>
+
+        <span class="c1"># head : 생성된 연결 리스트의 제일 첫 Node
+</span>        <span class="c1"># 첫 Node가 존재하지 않으면 입력 받은 node를 head에 추가
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+            <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+
+    <span class="c1"># 출력
+</span>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s">""</span>
+
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">string</span> <span class="o">+=</span> <span class="s">"-&gt;"</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">return</span> <span class="n">string</span>
+
+    <span class="c1"># 원하는 데이터의 index 찾기
+</span>    <span class="k">def</span> <span class="nf">getIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">index</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">index</span>
+    
+    <span class="c1"># 정해진 index에 node추가
+</span>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">current_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># index가 0인 경우
+</span>        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># 첫 번째 node가 존재하는 경우
+</span>            <span class="k">if</span> <span class="n">current_node</span><span class="p">:</span>
+                <span class="n">next_node</span> <span class="o">=</span> <span class="n">current_node</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">next_node</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 첫 번째 node가 존재하지 않는 경우
+</span>                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># index가 0이 아닌 경우
+</span>            <span class="c1"># 0부터 순차적으로 이전 node와 현재 node정보를 삽입할 index 번호 전까지 탐색
+</span>            <span class="k">while</span> <span class="n">current_index</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">current_node</span><span class="p">:</span>
+                    <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current_node</span>
+                    <span class="n">current_node</span> <span class="o">=</span> <span class="n">current_node</span><span class="o">.</span><span class="nb">next</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># 삽입할 index번호까지 current_index가 왔을 경우
+</span>            <span class="c1"># 이전 node의 다음 주소와 삽입할 node의 다음 주소를 연결
+</span>            <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current_node</span>
+                <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 원하는 data를 찾아 그 위치에 node 삽입
+</span>    <span class="k">def</span> <span class="nf">insertNodeAtData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 원하는 node 사제
+</span>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">current_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">next_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+
+        <span class="c1"># index가 0인 경우
+</span>        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">next_node</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">current_index</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">:</span>
+                <span class="c1"># 현재 node의 다음이 존재하는 경우
+</span>                <span class="k">if</span> <span class="n">current_node</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                    <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current_node</span>
+                    <span class="n">current_node</span> <span class="o">=</span> <span class="n">next_node</span>
+                    <span class="n">next_node</span> <span class="o">=</span> <span class="n">next_node</span><span class="o">.</span><span class="nb">next</span>
+                <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># 현재 node의 다음이 없는 경우
+</span>                    <span class="k">break</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">next_node</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># 현재 페이지 실행
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">sll</span> <span class="o">=</span> <span class="n">SinglyLinkedList</span><span class="p">()</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">sll</span><span class="p">)</span>
+    <span class="n">sll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">sll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">sll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'sll.getIndex(1) : {sll.getIndex(1)}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'sll.getIndex(2) : {sll.getIndex(2)}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'sll.getIndex(3) : {sll.getIndex(3)}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sll</span><span class="p">)</span>
+
+    <span class="n">sll</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sll</span><span class="p">)</span>
+
+    <span class="n">sll</span><span class="o">.</span><span class="n">insertNodeAtData</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sll</span><span class="p">)</span>
+
+    <span class="n">sll</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sll</span><span class="p">)</span>
+
+
+
+<span class="s">'''
+sll.getIndex(1) : 0
+sll.getIndex(2) : 1
+sll.getIndex(3) : 2
+1-&gt;2-&gt;3
+1-&gt;2-&gt;5-&gt;3
+1-&gt;4-&gt;2-&gt;5-&gt;3
+1-&gt;4-&gt;5-&gt;3
+'''</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="이중-연결리스트doubley-linked-list-구현하기">이중 연결리스트(Doubley Linked List) 구현하기</h2>
+<p>이중 연결 리스트는 각 노드에 <code class="highlighter-rouge">자료 공간</code>과 <code class="highlighter-rouge">두 개의 포인터 공간</code>이 있고, 각 노드의 포인터는 <code class="highlighter-rouge">이전 노드</code>와 <code class="highlighter-rouge">다음 노드</code>를 가르킨다.</p>
+
+<p><img src="/assets/resources/linked%20list_node-003.jpeg" alt="Alt text" /></p>
+
+<h3 id="-이중-연결-리스트의-특징"># 이중 연결 리스트의 특징</h3>
+<p>단순 연결리스트와 이중 연결 리스트의 차이는 이전(prev)를 가리키는 포인터 공간이 추가되면서 이전 노드에 대한 정보를 알 수 있다는 점이다. 이로 인해 단순 연결 리스트로는 할 수 없는 역으로 출력하는 것이 가능하고, 특정 노드의 이전 노드를 삭제하거나 특정 노드의 이전에 삽입하는게 가능해졌다.</p>
+
+<p>그러나 단순 열결 리스트 자료구조 만으로는 기능이 충분하다면 포인터 공간을 추가하여 메모리 공간을 낭비하지 않는게 좋다.</p>
+
+<h3 id="-삽입-1"># 삽입</h3>
+
+<p><img src="/assets/resources/doubly%20linked%20list-001.png" alt="Alt text" /></p>
+
+<h3 id="-삭제-1"># 삭제</h3>
+
+<p><img src="/assets/resources/doubly%20linked%20list-002.png" alt="Alt text" /></p>
+
+<h3 id="-코드-1"># 코드</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Node
+</span><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+    
+
+<span class="c1"># 이중 연결 리스트
+</span><span class="k">class</span> <span class="nc">DoublyLinkedList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c1"># 출력
+</span>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s">""</span>
+
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">string</span> <span class="o">+=</span> <span class="s">"-&gt;"</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">return</span> <span class="n">string</span>
+
+    <span class="c1"># node 추가
+</span>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="c1"># 첫 번째 node가 존재하는 경우
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+            <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">current</span>
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 첫 번째 node가 존재하지 않는 경우
+</span>            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+    
+    <span class="c1"># 원하는 index에 node 삽입
+</span>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">next_node</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="c1"># 첫 번째 node에 추가 하는 경우
+</span>        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="n">next_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">next_node</span>
+                <span class="n">next_node</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 중간 or 맨 끝에 추가하는 경우
+</span>            <span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+            <span class="k">while</span> <span class="n">current_index</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+                    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev_node</span>
+                <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current</span>
+
+                <span class="c1"># 중간에 node를 추가하는 경우 이전 노드 정보에 삽입하는 node 추가 
+</span>                <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="n">current</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 원하는 data의 index값 얻기
+</span>    <span class="k">def</span> <span class="nf">getIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">current_index</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">current_index</span>
+
+    <span class="c1"># 삽입을 원하는 데이터 위치에 넘겨준 데이터 넣기
+</span>    <span class="k">def</span> <span class="nf">insertNodeAtData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">next_node</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># 삭제를 원하는 index가 1인 경우
+</span>        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>    
+
+        <span class="k">while</span> <span class="n">current_index</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+        
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">dll</span> <span class="o">=</span> <span class="n">DoublyLinkedList</span><span class="p">()</span>
+    <span class="n">dll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">dll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">dll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">dll</span><span class="p">)</span>
+
+    <span class="n">dll</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">dll</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">dll</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">dll</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+    <span class="n">dll</span><span class="o">.</span><span class="n">insertNodeAtData</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">dll</span><span class="p">)</span>
+
+<span class="s">'''
+1-&gt;2-&gt;3
+1-&gt;6-&gt;2-&gt;3
+1
+3
+1-&gt;4-&gt;6-&gt;2-&gt;3
+'''</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="환형-연결-리스트circular-linked-list-구현하기">환형 연결 리스트(Circular Linked List) 구현하기</h2>
+<p>환형 연결 리스트라고 부르는 이 연결 리스트는 <code class="highlighter-rouge">머리와 꼬리가 연결</code>되어 <code class="highlighter-rouge">순환 구조</code>를 지닌다. 환형 연결 리스트는 Node에 포인터 공간이 두 개 일수도 있고, 한 개 일 수도 있으며 포인터 공간의 개수가 중요한 것이 아니라 노드의 Next가 None인 경우가 끊임 없이 이어진다는 의미이다. 따라서 노드가 한 개인 경우에도 무한대로 순환할 수 있다.</p>
+
+<h3 id="-환형-연결-리스트의-특징"># 환형 연결 리스트의 특징</h3>
+<p>복잡한 양방향 연결 리스트를 만들지 않고 간단하게 역방향 탐색을 할 수 있다는 것이 원형 연결 리스트의 장점이다. 하지만 원형 연결 리스트에서는 노드의 끝을 지나 계속 탐색하면 결국 역방향에 있는 노드로 이동할 수 있다. 다만 이렇게 수정할 경우 해당 환형 연결 리스트의 모든 요소를 확인하려고 할 경우 무한 루프에 빠질 수 있다는 단점이 존재한다.
+(** 함수의 조건문을 head에 다다르기 전에 멈추도록 수정해야 한다.)</p>
+
+<h3 id="-삽입-2"># 삽입</h3>
+
+<p><img src="/assets/resources/circular%20linked%20list-001.png" alt="Alt text" /></p>
+
+<h3 id="-삭제-2"># 삭제</h3>
+
+<p><img src="/assets/resources/circular%20linked%20list-002.png" alt="Alt text" /></p>
+
+<h3 id="-코드-2"># 코드</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 노드
+</span><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c1"># 환형 연결 리스트
+</span><span class="k">class</span> <span class="nc">CircularLinkedList</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="c1"># 출력
+</span>    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s">""</span>
+
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">string</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                <span class="n">string</span> <span class="o">+=</span> <span class="s">'-&gt;'</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="n">string</span> <span class="o">=</span> <span class="s">'-&gt;'</span> <span class="o">+</span> <span class="n">string</span>
+                <span class="k">break</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">return</span> <span class="n">string</span>
+
+    <span class="c1"># 새 노드 추가
+</span>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="c1"># 첫 번째 node가 존재하는 경우
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+
+            <span class="c1"># 현재의 노드가 다음이 아닌경우(노드가 1개가 아닌 경우)
+</span>            <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 첫 번째 node가 처음 연결 리스트로 들어가는 경우 next가 자기 자신을 바라본다.
+</span>            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+    
+    <span class="c1"># 원하는 data의 index
+</span>    <span class="k">def</span> <span class="nf">getIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+
+        <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">index</span>
+        
+        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">index</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">index</span> <span class="o">+=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="n">index</span>
+    
+    <span class="c1"># 원하는 위치에 node 추가
+</span>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="c1"># 연결 리스트의 첫 번째 삽입하는 경우
+</span>        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+                <span class="n">current_index</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                    <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+                <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+                <span class="k">return</span>
+        
+        <span class="n">current_index</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+
+        <span class="c1"># -&gt; 1 -&gt; 2 -&gt;
+</span>        <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+                <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current</span>
+                <span class="k">return</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 특정 data앞에 원하는 node 추가
+</span>    <span class="k">def</span> <span class="nf">insertNodeAtData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 특정 데이터 삭제
+</span>    <span class="k">def</span> <span class="nf">removeData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+
+        <span class="c1"># head가 삭제해야 할 데이터의 경우
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+            <span class="c1"># head -1 위치 까지 탐색
+</span>            <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            
+            <span class="c1"># head -1 위치의 next에 head의 다음 node정보
+</span>            <span class="c1"># head 위치에 next 정보
+</span>            <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+            <span class="k">return</span>
+        
+        <span class="c1"># head -1 위치 까지 탐색
+</span>        <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                <span class="k">return</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># 특정 index의 node 제거
+</span>    <span class="k">def</span> <span class="nf">removePosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+                    <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="k">while</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                        <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="n">current</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">current_index</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">current_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                    <span class="n">next_node</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                    <span class="n">prev_node</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">next_node</span>
+                    <span class="k">return</span>
+                <span class="n">prev_node</span> <span class="o">=</span> <span class="n">current</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="nb">next</span>
+                <span class="n">current_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">cll</span> <span class="o">=</span> <span class="n">CircularLinkedList</span><span class="p">()</span>
+    <span class="n">cll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+    <span class="n">cll</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">cll</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+
+    <span class="n">cll</span><span class="o">.</span><span class="n">insertNodeAtData</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+
+    <span class="n">cll</span><span class="o">.</span><span class="n">removeData</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+
+    <span class="n">cll</span><span class="o">.</span><span class="n">removePosition</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">cll</span><span class="p">)</span>
+
+<span class="s">'''
+-&gt;1-&gt;
+-&gt;1-&gt;2-&gt;
+0
+1
+-&gt;1-&gt;2-&gt;3-&gt;
+-&gt;1-&gt;4-&gt;2-&gt;3-&gt;
+-&gt;1-&gt;4-&gt;3-&gt;
+-&gt;1-&gt;4-&gt;
+'''</span>
+</code></pre></div></div>
+
+      <br/>
+      <!-- 블로그-하단-반응형 
+      <br/>
+      
+      <ins class="adsbygoogle"
+          style="display:block; width:100%; height:300px;"
+          data-ad-client="ca-pub-1200017190012992"
+          data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      
+    </div>
+    
+    <script>
+
+    </script>
+    -->
+  
+
+</article>
+
+  <hr class="dingbat" />
+<!--공유, 트위터, 페이스북-->
+  <div class="share">
+      <h2>Share this post</h2>
+      <div class="share-body">
+        <a href="http://twitter.com/share?text=[Language] 연결리스트(Linked List) in Python&amp;url=http://localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html"
+    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+            <span class="icon-twitter">
+            </span>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/study/2023/03/14/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8(Linked-List)-in-%ED%8C%8C%EC%9D%B4%EC%8D%AC.html"
+    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+            <span class="icon-facebook">
+            </span>
+        </a>
+    </div>
+  </div>
+  <br/>
+
+
+
+
+
+
+  <aside class="author1" role="complementary">
+    <div class="author">
+  <h2 class="page-title hr">
+    About
+  </h2>
+<div class="author-body">
+  
+    
+  
+
+  
+
+  <img
+    src="/assets/img/me.jpeg"
+    class="me"
+    alt="JeongYong Cho"
+    srcset="/assets/img/me.jpeg 1x,/assets/img/me.jpeg 2x"
+    
+  />
+
+
+  
+  <div class="author-body-description">
+    <p>PS(problem solver) 개발자 조정용입니다.</p>
+
+  </div>
+</div>
+</div>
+
+  </aside>
+
+
+
+
+
+<aside class="related" role="complementary">
+  <h2 class="hr">Related Posts</h2>
+  <div class="page-control">
+	<div>
+		
+		<a id="prev" class="button" href="/study/2023/03/10/Array-VS-ArrayList-VSLinkedList.html">&laquo; 이전 글</a>
+		
+	</div>
+	<div>
+		
+	</div>
+</div>
+  <ul class="related-posts">
+    
+      
+      
+      
+        
+          
+          
+        
+        
+          
+
+
+
+        
+      
+        
+        
+          
+
+
+
+        
+      
+        
+        
+          
+
+
+
+        
+      
+    
+  </ul>
+</aside>
+
+
+
+      
+        <aside class="comments" role="complementary">
+  <h2>Comments</h2>
+  <hr/>
+
+  <script src="https://utteranc.es/client.js"
+        repo="laagom/lagom-blog-comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+</aside>
+
+      
+
+      <footer>
+  <hr/>
+  
+    <p>© 2023.01. by 라곰</p>
+
+  
+  <p>
+    <code>Powered by <a href="https://laagom.github.io/">라곰</a></code>
+  </p>
+</footer>
+
+    </main>
+    <div class="right-side">
+  <div class="ad-first">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 블로그-상단-모바일 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:100%;"
+         data-ad-client="ca-pub-1200017190012992"
+         data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+<br/>
+<br/>
+  <div class="ad-second">
+    <!-- 블로그-스카이스크래퍼 -->
+    <ins class="adsbygoogle"
+         style="display:inline-block;max-width:320px;width:100%;height:600px"
+         data-ad-client="ca-pub-1200017190012992"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+  </div>
+  <div id="_yDrawer">
+  <div id="_sidebar" class="sidebar">
+    <div class="sidebar-bg" style="background-color:#4f86aa;background-image:url(/assets/img/lagom.png)"></div>
+    <header class="sidebar-sticky" role="banner">
+      <br/>
+
+      <div class="sidebar-about">
+        
+        <h1><a id="_title" href="/">라곰(Lagom)</a></h1>
+        <p>라곰 블로그</p>
+
+      </div>
+      <p>백수개발자의 지식 저장소.</p>
+
+      
+      
+      
+      <br/>
+      <br/>
+      
+      <div style="text-align: center;">
+        <a href="https://hits.seeyoufarm.com">
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Flaagom.github.io&count_bg=%233B38A0&title_bg=%236E778E&icon=apachecloudstack.svg&icon_color=%23E7E7E7&title=hits&edge_flat=false"/>
+        </a>
+      </div>
+      <nav class="sidebar-nav heading" role="navigation">
+        <span class="sr-only">Navigation:</span>
+<ul>
+  
+
+  
+
+  
+  
+  
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-1"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/portfolio.html">Portfolio</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-2"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/about.html">About</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-3"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/project/">Project</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-4"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/study/">Study</a>
+       <label class="folder" for="list-item-4">▾</label>
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-algorithm/">Algorithm</a>
+             </li>
+           
+         
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-computer-science/">Computer Science</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-data-structure/">Data Structure</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-it-information/">It Information</a>
+             </li>
+           
+         
+           
+             <li>
+               <a class="sidebar-nav-subitem" href="/tag/study-python/">Python</a>
+             </li>
+           
+         
+     </ul>
+    </li>
+
+  
+  
+    <li>
+      <input type="checkbox" id="list-item-5"/>
+      <div  class="list-wrapper">
+      <a class="sidebar-nav-item" href="/category/etc/">Etc</a>
+       
+    </div>
+     <ul class="list-body">
+       
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+           
+         
+     </ul>
+    </li>
+
+  
+</ul>
+
+      </nav>
+      <br/>
+      
+      <br/>
+      
+        <div class="sidebar-social">
+          <span class="sr-only">Social:</span>
+<ul>
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://github.com/laagom">
+    <span class="icon-github" title="GitHub"></span>
+    <span class="sr-only">GitHub</span>
+  </a>
+</li>
+
+  
+    
+
+
+
+
+
+
+
+
+
+<li>
+  <a href="https://laagom.tistory.com/">
+    <span class="icon-blogger" title="Blogger"></span>
+    <span class="sr-only">Blogger</span>
+  </a>
+</li>
+
+  
+</ul>
+
+        </div>
+      
+    </header>
+  </div>
+</div>
+
+</div>
+
+<!-- =============== -->
+<!-- SCRIPTS         -->
+<!-- =============== -->
+
+<script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', 'G-xxxx', 'auto');
+  ga('send', 'pageview');
+  loadJSDeferred('https://www.google-analytics.com/analytics.js');
+</script>
+
+
+
+
+
+<!--[if gt IE 8]><!---->
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    
+    google: {
+      families: 'Lato'.split('|')
+    },
+    
+
+    custom: {
+      families: ['icomoon'],
+      urls: ['/assets/icomoon/style.css']
+    }
+  });
+</script>
+<!--<![endif]-->
+
+
+  <!--[if gt IE 9]><!---->
+  
+  <script>loadJSDeferred('/assets/js/hydejack.js?v=6.4.0');</script>
+
+  
+  <!--<![endif]-->
+
+
+
+</body>
+
+</html>

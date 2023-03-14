@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: It Information
-slug: it_information
+title: Python
+slug: python
 category: study
 menu: false
-order: 4
+order: 5
 ---
